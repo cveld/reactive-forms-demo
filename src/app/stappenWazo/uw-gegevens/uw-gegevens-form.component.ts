@@ -1,14 +1,14 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { IWizardStepComponent } from 'src/app/shared/models';
-import { Utilities } from 'src/app/lib/date-picker/utilities';
+import { IWizardStepComponent } from '../../shared/models';
+import { Utilities } from '../../lib/date-picker/utilities';
 import { UwGegevensForm } from './uw-gegevens.form';
-import { UwGegevens } from 'src/app/shared/models/uw-gegevens';
-import { IDateModel } from 'src/app/lib/date-picker/interfaces';
-import { StappenVariantEnum, JaNeeEnum } from 'src/app/shared/enums';
+import { UwGegevens } from '../../shared/models/uw-gegevens';
+import { IDateModel } from '../../lib/date-picker/interfaces';
+import { StappenVariantEnum, JaNeeEnum } from '../../shared/enums';
 import { Subscription } from 'rxjs';
-import { FormValidators } from 'src/app/shared/forms/form-validators';
+import { FormValidators } from '../../shared/forms/form-validators';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { DatumValidators } from 'src/app/shared/forms/datum-validators';
+import { DatumValidators } from '../../shared/forms/datum-validators';
 
 @Component({
 // tslint:disable-next-line:component-selector

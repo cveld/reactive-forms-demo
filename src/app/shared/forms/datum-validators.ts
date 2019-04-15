@@ -1,5 +1,5 @@
 import { AbstractControl } from '@angular/forms';
-import { IDate, IDateModel } from 'src/app/lib/date-picker/interfaces';
+import { IDate, IDateModel } from '../../lib/date-picker/interfaces';
 
 export class DatumValidators {
     private static isValid(date: IDate): boolean {

@@ -1,6 +1,6 @@
 import * as StappenActions from './stappen.actions';
 import { Stap } from '../../../shared/models/stap';
-import { UwSituatieComponent } from 'src/app/stappenWazo/uw-situatie/uw-situatie.component';
+import { UwSituatieComponent } from '../../../stappenWazo/uw-situatie/uw-situatie.component';
 
 export function stappenReducer(state: Stap[] = [
     {

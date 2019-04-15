@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IWizardStepComponent } from 'src/app/shared/models';
+import { IWizardStepComponent } from '../../shared/models';
 
 @Component({
   selector: 'app-werk-en-inkomen',

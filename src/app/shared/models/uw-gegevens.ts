@@ -1,5 +1,5 @@
 import { JaNeeEnum, StappenVariantEnum } from '../enums';
-import { IDate, IDateModel } from 'src/app/lib/date-picker/interfaces';
+import { IDate, IDateModel } from '../../lib/date-picker/interfaces';
 
 export class UwGegevens {
     meerling: boolean;

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { IWizardStepComponent } from 'src/app/shared/models';
 
 @Component({
   // tslint:disable-next-line:component-selector

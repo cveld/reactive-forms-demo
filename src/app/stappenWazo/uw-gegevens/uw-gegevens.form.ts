@@ -1,10 +1,10 @@
 import { FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { DatumValidators } from 'src/app/shared/forms/datum-validators';
-import { UwGegevens } from 'src/app/shared/models/uw-gegevens';
-import { StappenVariantEnum, JaNeeEnum } from 'src/app/shared/enums';
-import { FormValidators } from 'src/app/shared/forms/form-validators';
-import { IDateModel, IDate } from 'src/app/lib/date-picker/interfaces';
+import { DatumValidators } from '../../shared/forms/datum-validators';
+import { UwGegevens } from '../../shared/models/uw-gegevens';
+import { StappenVariantEnum, JaNeeEnum } from '../../shared/enums';
+import { FormValidators } from '../../shared/forms/form-validators';
+import { IDateModel, IDate } from '../../lib/date-picker/interfaces';
 
 /** Form voor de WAZO-stap Uw Gegevens */
 export class UwGegevensForm extends FormGroup {

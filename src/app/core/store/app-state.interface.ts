@@ -1,8 +1,8 @@
-import { UwSituatieModel } from 'src/app/shared/models/uw-situatie';
+import { UwSituatieModel } from '../../shared/models/uw-situatie';
 import { createSelector } from '@ngrx/store';
-import { WWSituatieEnum, JaNeeEnum, StappenVariantEnum, WWofZelfstandigEnum } from 'src/app/shared/enums';
-import { UwGegevens } from 'src/app/shared/models/uw-gegevens';
-import { UwGegevensComponent } from 'src/app/stappenWazo/uw-gegevens/uw-gegevens.component';
+import { WWSituatieEnum, JaNeeEnum, StappenVariantEnum, WWofZelfstandigEnum } from '../../shared/enums';
+import { UwGegevens } from '../../shared/models/uw-gegevens';
+import { UwGegevensComponent } from '../../stappenWazo/uw-gegevens/uw-gegevens.component';
 import { IResourceDictionary } from '../../shared/models/resources-dictionary';
 
 /** Root state shape */

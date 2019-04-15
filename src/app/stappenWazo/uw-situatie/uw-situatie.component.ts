@@ -1,13 +1,13 @@
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl, AbstractControl } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { IWizardStepComponent } from 'src/app/shared/models';
+import { IWizardStepComponent } from '../../shared/models';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { IAppState } from 'src/app/core/store/app-state.interface';
-import { SaveUwSituatie } from 'src/app/core/store/uw-situatie/uw-situatie.actions';
-import { VolgendeStap } from 'src/app/core/store/actievestap/actievestap.actions';
-import { UwSituatieModel } from 'src/app/shared/models/uw-situatie';
-import { FormValidators } from 'src/app/shared/forms/form-validators';
+import { IAppState } from '../../core/store/app-state.interface';
+import { SaveUwSituatie } from '../../core/store/uw-situatie/uw-situatie.actions';
+import { VolgendeStap } from '../../core/store/actievestap/actievestap.actions';
+import { UwSituatieModel } from '../../shared/models/uw-situatie';
+import { FormValidators } from '../../shared/forms/form-validators';
 
 
 

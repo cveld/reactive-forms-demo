@@ -1,14 +1,14 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { IWizardStepComponent } from 'src/app/shared/models';
+import { IWizardStepComponent } from '../../shared/models';
 import { UwGegevensFormComponent } from './uw-gegevens-form.component';
-import { FormValidators } from 'src/app/shared/forms/form-validators';
-import { IAppState, selectStappenvariant, selectUwSituatie } from 'src/app/core/store/app-state.interface';
+import { FormValidators } from '../../shared/forms/form-validators';
+import { IAppState, selectStappenvariant, selectUwSituatie } from '../../core/store/app-state.interface';
 import { Store, select } from '@ngrx/store';
-import { VolgendeStap, ChangeStap } from 'src/app/core/store/actievestap/actievestap.actions';
-import { SaveUwGegevens } from 'src/app/core/store/uw-gegevens/uw-gegevens.actions';
+import { VolgendeStap, ChangeStap } from '../../core/store/actievestap/actievestap.actions';
+import { SaveUwGegevens } from '../../core/store/uw-gegevens/uw-gegevens.actions';
 import { Subscription, Observable } from 'rxjs';
-import { StappenVariantEnum, JaNeeEnum } from 'src/app/shared/enums';
-import { UwSituatieModel } from 'src/app/shared/models/uw-situatie';
+import { StappenVariantEnum, JaNeeEnum } from '../../shared/enums';
+import { UwSituatieModel } from '../../shared/models/uw-situatie';
 import { Router } from '@angular/router';
 
 @Component({

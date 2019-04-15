@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { UwGegevens } from 'src/app/shared/models/uw-gegevens';
+import { UwGegevens } from '../../../shared/models/uw-gegevens';
 
 
 export const SAVE = '[UWGEGEVENS] Save';
