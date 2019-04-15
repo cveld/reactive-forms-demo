@@ -1,0 +1,65 @@
+<div class="step-indicator sm-min-select" *ngIf="stappen">
+  
+
+  <span
+    class="step-indicator-selector"
+    data-toggle="collapse"
+    aria-expanded="false"
+    href="#step-indicator">
+    <span class="step-indicator-selector-count">
+      Stap {{ actieveStap + 1 }}<ng-container *ngIf="stappen.length > 1">/{{ stappen.length }}</ng-container>
+    </span>
+    <span class="step-indicator-selector-trigger">
+        {{ stappen[actieveStap].naamStap }}
+    </span>
+    <span class="caret"></span>
+    <span class="sr-only acb-state"></span>
+  </span>
+
+  <div
+    id="step-indicator"
+    class="step-indicator-list-wrapper collapse">
+
+    <ul class="step-indicator-list">
+
+      <li
+        class="step-indicator-item"
+        *ngFor="let stap of stappen; let index = index"
+        [ngClass]="{ 'active': index === actieveStap}">
+
+        <span
+          class="step-indicator-item-text-wrapper"
+          *ngIf="index !== actieveStap && (index < actieveStap)"
+          (click)="changeStap(stap)">
+          <span class="step-indicator-item-index">{{ index + 1 }}.</span>
+          <span class="step-indicator-item-title">{{ stap.naamStap }}</span>
+    </span>
+
+        <span
+          class="step-indicator-item-text-wrapper"
+          *ngIf="index === actieveStap || (index > actieveStap)"
+          (click)="changeStap(stap)">
+          <span class="step-indicator-item-index">{{ index + 1 }}.</span>
+          <span class="step-indicator-item-title sr-only-xs">{{ stap.naamStap }}</span>
+        </span>
+
+        <div
+          class="left"
+          [ngClass]="{
+            'icon-step-indicator-selectable': index !== actieveStap && (index < actieveStap),
+            'icon-step-indicator-active': index === actieveStap,
+            'icon-step-indicator-inactive': index !== actieveStap && (index > actieveStap)
+          }"></div>
+
+        <div
+          class="right"
+          [ngClass]="{
+            'icon-step-indicator-selectable': index !== actieveStap && (index < actieveStap),
+            'icon-step-indicator-active': index === actieveStap,
+            'icon-step-indicator-inactive': index !== actieveStap && (index > actieveStap)
+          }"></div>
+      </li>
+
+    </ul>
+  </div>
+</div>

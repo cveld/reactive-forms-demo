@@ -1,0 +1,15 @@
+<div class="panel">
+    <div class="panel-body">      
+        <p>Verplichte velden worden aangegeven met een sterretje</p>
+
+        <adresgegevens></adresgegevens>
+        <uw-gegevens-form [forceValidation]="submitted" [stappenVariant]="stappenVariant$ | async" [meerling]="(uwSituatie$ | async).meerling == JaNeeEnum.ja"></uw-gegevens-form>
+        
+        <p class="btn-container-right">
+            <a class="btn btn-link" href="/mijnuwv/aanvragen" data-ta-id="uw-situatie-annuleren">Annuleren</a> 
+            <button *ngIf="(stappenVariant$ | async) == StappenVariantEnum.zelfstandige" class="btn btn-primary" (click)="volgendeClicked()" data-ta-id="uw-gegevens-volgende">Volgende</button>
+            <button *ngIf="(stappenVariant$ | async) != StappenVariantEnum.zelfstandige" class="btn btn-primary" (click)="volgendeClicked()" data-ta-id="uw-gegevens-versturen">Versturen</button>            
+        </p>
+
+    </div>
+</div>

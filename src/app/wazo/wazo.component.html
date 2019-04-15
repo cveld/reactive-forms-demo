@@ -1,0 +1,11 @@
+<div class="main_intro">
+  <h1>Zwangerschapsuitkering aanvragen</h1>
+</div>
+<div class="main_body">
+  <div class="panel">
+    <div class="panel-body">
+        <stappen [stappen]="stappen$ | async" [actieveStap]="actieveStapIndex$ | async"></stappen>
+    </div>
+  </div>
+  <ng-template uwvWizardStepHost></ng-template>
+</div>

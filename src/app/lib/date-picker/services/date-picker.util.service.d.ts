@@ -1,0 +1,30 @@
+import { IDate } from "../interfaces/date.interface";
+import { IDateRange } from "../interfaces/date-range.interface";
+import { IMonth } from "../interfaces/month.interface";
+import { IMonthLabels } from "../interfaces/month-labels.interface";
+import { IMarkedDates } from "../interfaces/marked-dates.interface";
+import { IMarkedDate } from "../interfaces/marked-date.interface";
+export declare class UtilService {
+    weekDays: Array<string>;
+    isDateValid(dateStr: string, dateFormat: string, minYear: number, maxYear: number, disableUntil: IDate, disableSince: IDate, disableWeekends: boolean, disableWeekDays: Array<string>, disableDays: Array<IDate>, disableDateRanges: Array<IDateRange>, monthLabels: IMonthLabels, enableDays: Array<IDate>): IDate;
+    getDateFormatSeparators(dateFormat: string): Array<string>;
+    changeDateFormat(dateFormat: string, len: number): string;
+    isMonthLabelValid(monthLabel: string, monthLabels: IMonthLabels): number;
+    getFormattedToken(val: string, token: string): string;
+    isYearLabelValid(yearLabel: number, minYear: number, maxYear: number): number;
+    parseDatePartsToNumbers(dateFormat: string, dateString: string): number[];
+    parseDatePartMonthName(dateFormat: string, dateString: string, datePart: string, monthLabels: IMonthLabels): number;
+    parseDefaultMonth(monthString: string): IMonth;
+    isDisabledDay(date: IDate, minYear: number, maxYear: number, disableUntil: IDate, disableSince: IDate, disableWeekends: boolean, disableWeekDays: Array<string>, disableDays: Array<IDate>, disableDateRanges: Array<IDateRange>, enableDays: Array<IDate>): boolean;
+    isMarkedDate(date: IDate, markedDates: Array<IMarkedDates>, markWeekends: IMarkedDate): IMarkedDate;
+    isHighlightedDate(date: IDate, sunHighlight: boolean, satHighlight: boolean, highlightDates: Array<IDate>): boolean;
+    getWeekNumber(date: IDate): number;
+    isMonthDisabledByDisableUntil(date: IDate, disableUntil: IDate): boolean;
+    isMonthDisabledByDisableSince(date: IDate, disableSince: IDate): boolean;
+    isInitializedDate(date: IDate): boolean;
+    isSameDate(d1: IDate, d2: IDate): boolean;
+    getTimeInMilliseconds(date: IDate): number;
+    getDayNumber(date: IDate): number;
+    getWeekDays(): Array<string>;
+    getWeekdayIndex(wd: string): number;
+}

@@ -1,0 +1,52 @@
+﻿<div class="step-indicator sm-min-select" style="margin-bottom: 0px !important;">
+    <a class="step-indicator-selector"
+       data-toggle="collapse"
+       aria-expanded="false"
+       data-acb-state-opened="Klik om in te klappen"
+       data-acb-state-closed="Klik om uit te klappen"
+       href="#step-indicator-1b"
+       attr.data-ta-id="step-indicator-dropdown"
+       id="step-indicator">
+        <span class="step-indicator-selector-count">
+            Stap {{ currentStep }}/{{ steps.length }}
+        </span>
+        <span class="step-indicator-selector-trigger">
+            {{ getCurrentStep() }}
+        </span>
+        <span class="caret"></span>
+        <span class="sr-only acb-state">Klik om uit te klappen</span>
+    </a>
+    <div id="step-indicator-1b" class="step-indicator-list-wrapper collapse">
+        <ul class="step-indicator-list">
+            <li *ngFor="let step of steps; let i = index" class="step-indicator-item" attr.data-ta-id="{{i+1}} {{steps[i]}}" [class.active]="i + 1 == currentStep"  >
+                <ng-container *ngIf="i + 1 < currentStep">
+                    <span class="sr-only">Afgeronde stap</span>
+                    <a href="{{ '#' + (i + 1) }}" class="step-indicator-item-text-wrapper" (click)="goToStep($event, i + 1)" attr.data-ta-id="stap{{ i + 1 }}" attr.aria-label="Ga naar stap {{ i + 1 }}">
+                        <span class="step-indicator-item-index">{{ i + 1 }}</span>
+                        <span class="step-indicator-item-title" [class.sr-only]="steps.length > 4">{{ steps[i] }}</span>
+                    </a>
+                    <div class="icon-step-indicator-selectable left"></div>
+                    <div class="icon-step-indicator-selectable right"></div>
+                </ng-container>
+                <ng-container *ngIf="i + 1 == currentStep">
+                    <span class="sr-only">Actieve stap</span>
+                    <span class="step-indicator-item-text-wrapper">
+                        <span class="step-indicator-item-index">{{ i + 1 }}</span>
+                        <span class="step-indicator-item-title"> {{ steps[i] }}</span>
+                    </span>
+                    <div class="icon-step-indicator-active left"></div>
+                    <div class="icon-step-indicator-active right"></div>
+                </ng-container>
+                <ng-container *ngIf="i + 1 > currentStep">
+                    <span class="sr-only">Niet afgeronde stap</span>
+                    <span class="step-indicator-item-text-wrapper">
+                        <span class="step-indicator-item-index">{{ i + 1 }}</span>
+                        <span class="step-indicator-item-title" [class.sr-only]="steps.length > 4">{{ steps[i] }}</span>
+                    </span>
+                    <div class="icon-step-indicator-inactive left"></div>
+                    <div class="icon-step-indicator-inactive right"></div>
+                </ng-container>
+            </li>
+        </ul>
+    </div>
+</div>

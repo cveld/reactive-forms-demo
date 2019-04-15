@@ -1,0 +1,66 @@
+import { IDayLabels } from "./day-labels.interface";
+import { IMonthLabels } from "./month-labels.interface";
+import { IDate } from "./date.interface";
+import { IDateRange } from "./date-range.interface";
+import { IMarkedDates } from "./marked-dates.interface";
+import { IMarkedDate } from "./marked-date.interface";
+
+export interface IOptions {
+    dayLabels?: IDayLabels;
+    monthLabels?: IMonthLabels;
+    dateFormat?: string;
+    showTodayBtn?: boolean;
+    todayBtnTxt?: string;
+    firstDayOfWeek?: string;
+    satHighlight?: boolean;
+    sunHighlight?: boolean;
+    highlightDates?: Array<IDate>;
+    markCurrentDay?: boolean;
+    markCurrentMonth?: boolean;
+    markCurrentYear?: boolean;
+    disableUntil?: IDate;
+    disableSince?: IDate;
+    disableDays?: Array<IDate>;
+    enableDays?: Array<IDate>;
+    markDates?: Array<IMarkedDates>;
+    markWeekends?: IMarkedDate;
+    disableDateRanges?: Array<IDateRange>;
+    disableWeekends?: boolean;
+    disableWeekdays?: Array<string>;
+    showWeekNumbers?: boolean;
+    height?: string;
+    width?: string;
+    selectionTxtFontSize?: string;
+    selectorHeight?: string;
+    selectorWidth?: string;
+    allowDeselectDate?: boolean;
+    inline?: boolean;
+    showClearDateBtn?: boolean;
+    showDecreaseDateBtn?: boolean;
+    showIncreaseDateBtn?: boolean;
+    alignSelectorRight?: boolean;
+    openSelectorTopOfInput?: boolean;
+    indicateInvalidDate?: boolean;
+    editableDateField?: boolean;
+    monthSelector?: boolean;
+    yearSelector?: boolean;
+    disableHeaderButtons?: boolean;
+    minYear?: number;
+    maxYear?: number;
+    componentDisabled?: boolean;
+    showSelectorArrow?: boolean;
+    showInputField?: boolean;
+    openSelectorOnInputClick?: boolean;
+    allowSelectionOnlyInCurrentMonth?: boolean;
+    ariaLabelInputField?: string;
+    ariaLabelClearDate?: string;
+    ariaLabelDecreaseDate?: string;
+    ariaLabelIncreaseDate?: string;
+    ariaLabelOpenCalendar?: string;
+    ariaLabelPrevMonth?: string;
+    ariaLabelNextMonth?: string;
+    ariaLabelPrevYear?: string;
+    ariaLabelNextYear?: string;
+}
+
+export interface IDpOptions extends IOptions {}
