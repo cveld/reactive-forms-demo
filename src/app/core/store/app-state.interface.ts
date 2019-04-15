@@ -4,14 +4,12 @@ import { WWSituatieEnum, JaNeeEnum, StappenVariantEnum, WWofZelfstandigEnum } fr
 import { UwGegevens } from 'src/app/shared/models/uw-gegevens';
 import { UwGegevensComponent } from 'src/app/stappenWazo/uw-gegevens/uw-gegevens.component';
 import { IResourceDictionary } from '../../shared/models/resources-dictionary';
-import { IServerOperationResult } from 'edv-ngrx-server-operation';
 
 /** Root state shape */
 export interface IAppState {
     // stappen: Stap[];
     actieveStap: number;
     uwsituatie: UwSituatieModel;
-    resources: IServerOperationResult<IResourceDictionary>;
     uwgegevens: UwGegevens;
 }
 
@@ -21,13 +19,6 @@ export const selectActieveStapIndex = (state: IAppState) => state.actieveStap;
 export const selectUwSituatie = (state: IAppState) => {
     return state.uwsituatie;
 };
-
-export const selectResources = (state: IAppState) => state.resources;
-
-export const selectResourcesSucceeded = createSelector(
-    selectResources,
-    result => result && !!result.succeeded
-);
 
 export const selectStappenvariant = createSelector(
     selectUwSituatie, (uwSituatie) => {
