@@ -1,0 +1,188 @@
+* html .cb_dialog {
+  position: absolute;
+  right: auto;
+  bottom: auto;
+  top: expression(eval(document.compatMode && document.compatMode=='CSS1Compat') ? documentElement.scrollTop +(documentElement.clientHeight-this.clientHeight) : document.body.scrollTop +(document.body.clientHeight-this.clientHeight));
+  left: expression(eval(document.compatMode && document.compatMode=='CSS1Compat') ? documentElement.scrollLeft +(documentElement.clientWidth-this.clientWidth - 20) : document.body.scrollLeft +(document.body.clientWidth-this.clientWidth - 20));
+}
+
+.cb_dialog {
+  border-left: 1px solid #aeaeae;
+  border-right: 1px solid #aeaeae;
+  border-top: 1px solid #aeaeae;
+  -webkit-box-shadow: 0px 5px 30px 10px #e0e0e0;
+  box-shadow: 0px 5px 30px 10px #e0e0e0;
+  -webkit-border-radius: 5px 5px 0px 0px;
+  border-radius: 5px 5px 0px 0px;
+  position: fixed;
+  right: 20px;
+  bottom: 0;
+  width: 375px;
+  background-color: white !important;
+  font-size: 13px !important;
+  color: black !important;
+  font-family: Verdana, sans-serif !important;
+  z-index: 99999 !important;
+}
+
+.cb_dialog .cb_dialogbartitle {
+  float: left;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  color: white !important;
+}
+
+a.cb_dialogclose {
+  background: url('/static/vendor/iadvize/images/close.png') no-repeat;
+  width: 16px;
+  height: 16px;
+  text-indent: -9999px;
+  outline: 0;
+}
+
+a.cb_dialogminmax.minimized {
+  background: url('/static/vendor/iadvize/images/maximize.png') no-repeat;
+  width: 16px;
+  height: 16px;
+  text-indent: -9999px;
+  overflow: hidden;
+  outline: 0;
+}
+
+a.cb_dialogminmax.maximized {
+  background: url('/static/vendor/iadvize/images/minimize.png') no-repeat;
+  width: 16px;
+  height: 16px;
+  text-indent: -9999px;
+  overflow: hidden;
+  outline: 0;
+}
+
+.cb_dialog .cb_clear {
+  clear: both;
+}
+
+.cb_dialog .cb_dialogcontent {
+  padding: 10px;
+}
+
+.cb_dialog .cb_dialogcontent h1 {
+  margin: 0 !important;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  color: black !important;
+}
+
+.cb_dialog .cb_dialogcontent ul {
+  list-style: disc;
+}
+
+.cb_dialog .cb_dialogcontent ul li {
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+
+.cb_dialog .cb_token .cb_tokenval {
+  border: 2px solid #aeaeae;
+  background-color: #eee;
+  font-size: 38px;
+  margin: 25px 15px 25px 15px;
+  padding: 20px;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 14px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  line-height: 40px !important;
+}
+
+.cb_dialog .cb_acceptterms {
+  margin: 0 auto;
+  display: block;
+}
+
+.cb_dialog .cb_toggle {
+  padding: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  margin-bottom: 45px;
+}
+
+.cb_dialog .cb_toggle.enabled {
+  background-color: #dff0d8;
+  border: 1px solid #d6e9c6;
+}
+
+.cb_dialog .cb_toggle.disabled {
+  background-color: #f2dede;
+  border: 1px solid #eed3d7;
+}
+
+.cb_dialog .cb_togglestatus {
+  float: left;
+}
+
+.cb_dialog .cb_togglebtn {
+  float: right;
+  width: 100px;
+  outline: 0;
+}
+
+.cb_dialog .cb_speakwith {
+  padding: 5px;
+}
+
+.cb_dialog .cb_tokenval {
+  padding: 5px;
+}
+
+.cb_dialog .cb_secure {
+  margin-top: 5px;
+  padding: 5px 5px 5px 25px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  background: url('../images/secure.png') no-repeat 5px 5px;
+}
+
+.cb_dialog .cb_secure a {
+  color: #026BCC;
+  outline: 0;
+}
+
+.cb_dialog .cb_opensession strong {
+  width: 115px;
+  display: inline-block;
+}
+
+.cb_dialogbar {
+  padding: 10px;
+  background-color: #026BCC;
+}
+
+.cb_dialogbar a {
+  float: right;
+  display: block;
+  margin-left: 5px;
+  outline: 0;
+}
+
+/*
+most grid styling is done with bootstrap, but when its not there, do some manual positioning
+html:not(.js) appears to be non-bootstrap
+*/
+
+html:not(.js) .cb_dialog .row {
+  position: relative;
+}
+
+html:not(.js) #idz_merp {
+  width: 60%;
+  height: 20px;
+  font-weight: bold;
+}
+
+html:not(.js) #idz_merp_btn {
+  top: 0;
+  right: 0;
+  position: absolute;
+}

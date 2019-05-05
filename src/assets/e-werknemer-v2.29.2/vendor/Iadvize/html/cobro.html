@@ -1,0 +1,67 @@
+<!--v37-->
+<div id="cobrowseTerms" class="cb_dialog" style="display:none;">
+  <div class="cb_dialogbar">
+    <div class="cb_dialogbartitle">Scherm delen?</div>
+    <a href="javascript:closeCobro();" class="cb_dialogclose">X</a>
+    <a href="javascript:maximizeCobro();" class="cb_dialogminmax minimized">_</a>
+    <a href="javascript:minimizeCobro();" class="cb_dialogminmax maximized">_</a>
+    <div class="cb_clear"></div>
+  </div>
+  <div class="cb_dialogcontent">
+    <div class="cobrowsing_terms">
+      <p><span style="font-size: small;"><strong>Hoe werkt scherm delen?</strong></span></p>
+
+      <p><span style="font-size: small;">Als u belt met een medewerker van UWV Telefoon, kan hij vragen of hij mee mag kijken op uw UWV-scherm. Hoe werkt het?</span>
+      </p>
+      <ul>
+        <li>
+          <span style="font-size: small;">De medewerker kan alleen meekijken. Hij kan niet de bediening van uw computer overnemen. Hij kan wel uw persoonlijke gegevens zien, maar geen medische gegevens.</span>
+        </li>
+        <li>
+          <span style="font-size: small;">Wilt u stoppen? Dat kan op ieder moment. Klik daarvoor op het kruisje rechtsboven.</span>
+        </li>
+        <li>
+          <span style="font-size: small;">Gaat u akkoord met onze voorwaarden? Klik dan op 'Akkoord': op uw scherm verschijnt tekstveld. Onze medewerker zal u een code geven die u hier moet invoeren. Klik vervolgens op ‘OK’ om scherm delen te starten.</span>
+        </li>
+      </ul>
+      <p><span style="font-size: small;"><strong>Voorwaarden voor scherm delen</strong></span></p>
+
+      <p><span style="font-size: small;">Ik heb de tekst hierboven gelezen en begrepen. Ik ga ermee akkoord dat:</span></p>
+      <ul>
+        <li><span style="font-size: small;">de medewerker van UWV Telefoon persoonlijke (geen medische) gegevens ziet die op mijn scherm staan;</span>
+        </li>
+        <li><span style="font-size: small;">ik altijd zelf verantwoordelijk ben voor wat ik invul, verstuur of opsla tijdens het scherm delen.</span>
+        </li>
+      </ul>
+      <button class="btn btn-primary cb_acceptterms button blue90" onclick="showCobroId();return false;">Akkoord</button>
+    </div>
+  </div>
+</div>
+<div id="cobrowseId" class="cb_dialog" style="display:none;">
+  <div class="cb_dialogbar">
+    <div class="cb_dialogbartitle">Scherm delen?</div>
+    <a href="javascript:closeCobro();" class="cb_dialogclose">X</a>
+    <a href="javascript:maximizeCobro();" class="cb_dialogminmax minimized">_</a>
+    <a href="javascript:minimizeCobro();" class="cb_dialogminmax maximized">_</a>
+    <div class="cb_clear"></div>
+  </div>
+  <div class="cb_dialogcontent col-md-12">
+    <span>Voer de code die u van de UWV-medewerker heeft ontvangen hier in. De UWV-medewerker kan dan uw computerscherm zien.</span>
+    <div class="row">
+      <div class="col-md-7">
+        <label for="idz_merp">Code</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-7">
+        <input name="idz_merp" id="idz_merp" class="form-control" type="text">
+      </div>
+      <div class="col-md-5">
+        <br class="hidden-md hidden-lg"/>
+        <button id="idz_merp_btn" class="btn btn-primary cb_acceptterms button blue119" onclick="startCobroSession(); return false;">
+          Scherm delen
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
