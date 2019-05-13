@@ -1,21 +1,23 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, AfterViewInit, QueryList, ViewChildren } from '@angular/core';
 import { FormGroupDirective, FormControlName, FormArray, FormArrayName, FormControl, AbstractControl } from '@angular/forms';
 import { ValidationMessageService } from '../../shared/validation-message.service';
 import { ValidationMessageComponent } from '../validation-message/validation-message.component';
 
 @Component({
     selector: 'validation-message-for',
-    template: `<p *ngIf="visible && (control?.touched || form.submitted)" class="form-control-help text-danger">
+    template: `<p *ngIf="visible &amp;&amp; (control?.touched || form.submitted)" class="form-control-help text-danger">
                 <span class="icon text-hide icon-sm icon-help-danger"></span>
                 <validation-message error="server-error">{{controlErrorMessage}}</validation-message>
                 <validation-message error="defaulterrormessage">Voer een geldige waarde in.</validation-message>
-                <ng-content></ng-content>                
+                <ng-content></ng-content>
                </p>`,
     providers: [ValidationMessageService]
 })
-export class ValidationMessageForComponent implements OnInit {
+export class ValidationMessageForComponent implements OnInit, AfterViewInit {
     @Input()
     field: string;
+
+    @ViewChildren(ValidationMessageComponent) messageComponents: QueryList<ValidationMessageComponent>;
 
     visible = false;
     control: AbstractControl;
@@ -24,7 +26,7 @@ export class ValidationMessageForComponent implements OnInit {
     form: FormGroupDirective;
 
 
-    constructor(private _form: FormGroupDirective, private messageService: ValidationMessageService) {
+    constructor(private _form: FormGroupDirective, public messageService: ValidationMessageService) {
         this.form = _form;
     }
 
@@ -35,11 +37,15 @@ export class ValidationMessageForComponent implements OnInit {
 
         if (this.control && this.control.statusChanges) {
             this.control.statusChanges.subscribe(() => {
-                this.onValueChanged()
+                this.onValueChanged();
             });
         }
+    }
 
-        this.onValueChanged();
+    ngAfterViewInit() {
+        setTimeout(() => {
+            this.onValueChanged();
+        });
     }
 
     onSubmit() {
@@ -83,7 +89,7 @@ export class ValidationMessageForComponent implements OnInit {
     }
 
     displayError(error: string | null): void {
-        var messageSet = false;
+        let messageSet = false;
         for (let message of this.messageService.getMessages()) {
             message.visible = message.error === error;
             messageSet = messageSet || message.visible;

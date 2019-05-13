@@ -1,5 +1,5 @@
-import { FormBuilder, FormGroup, Validators, FormArray, FormControl, AbstractControl } from '@angular/forms';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormArray, FormControl, AbstractControl, NgForm } from '@angular/forms';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { IWizardStepComponent } from '../../shared/models';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -27,6 +27,7 @@ export class UwSituatieComponent implements OnInit, OnDestroy, IWizardStepCompon
     public submitted = false;
     private subscriptions: Array<Subscription> = new Array<Subscription>();
     private validating = false;
+    // @ViewChild('myForm') ngForm: NgForm;
 
     complete(): void {
       throw new Error('Method not implemented.');
@@ -66,12 +67,13 @@ export class UwSituatieComponent implements OnInit, OnDestroy, IWizardStepCompon
     // uitzoeken: wellicht kunnen we voorkomen dat we handmatig een revalidate moeten aftrappen?
     revalidate(...parameters): void {
         if (this.submitted && !this.validating) {
-            this.validateForm();
+            // this.validateForm();
         }
     }
 
     volgendeClicked() {
         this.submitted = true;
+        // this.ngForm.onSubmit(undefined);
         this.validateForm();
         if (this.form.invalid) {
             return;
