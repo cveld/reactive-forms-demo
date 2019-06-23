@@ -1,4 +1,4 @@
-import { AbstractControl, FormControl, FormArray, FormGroup } from '@angular/forms';
+import { AbstractControl, FormControl, FormArray, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 
 export class FormValidators {
     static validateForm(control: AbstractControl, emitEvent: boolean) {
@@ -24,7 +24,40 @@ export class FormValidators {
     // expression is true betekent dat het veld verplicht is
     static RequiredExpressionValidator<T>(expression: (model: T, controlName) => boolean, controlName?: string) {
         return (control: AbstractControl) => {
-            return (!!control.parent && (!expression(control.parent.value, controlName) || !!control.value)) ? null : { RequiredExpressionValidator: true };
+            const result = (
+                // is het veld verplicht:
+                (!!control.parent && !expression(control.parent.value, controlName)) ||
+                // zo ja, controleer dan of het gevuld is
+                (!!control.value &&
+                // en controleer of IDateModel goed gevuld is
+                !(!!control.value.date && !control.value.date.input))) ? null : { RequiredExpressionValidator: true };
+                // javascript: input !== '' && input !== undefined && input !== null && input !== false
+            return result;
+        };
+    }
+
+    static ConditionalValidators<T>(expression: (model: T) => boolean, validators: ValidatorFn[], controlName?: string, ) {
+        return (control: AbstractControl) => {
+            // Is de expressie niet waar? Dan hoeven de validators niet te worden gecontroleerd. Return null
+            if (!control.parent || !expression(control.parent.value)) {
+                return null;
+            }
+
+            const validations = {};
+            let errorFound = false;
+
+            validators.forEach(validator => {
+                const val = validator(control);
+
+                if (!!val) {
+                    errorFound = true;
+                    Object.keys(val).forEach(key => {
+                        validations[key] = val[key];
+                    });
+                }
+            });
+
+            return errorFound ? validations : null;
         };
     }
 }

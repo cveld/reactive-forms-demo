@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { UwSituatieModel } from '../../../shared/models/uw-situatie';
+import { UwSituatieModel } from '../../../shared/models/uw-situatie-model';
 
 
 export const SAVE = '[UWSITUATIE] Save';

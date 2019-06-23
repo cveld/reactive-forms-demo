@@ -121,22 +121,37 @@ export class CustomValidators {
         };
     }
 
-    public static housenumberValidator(control: AbstractControl) {
+    public static huisnummerBinnenlandValidator(control: AbstractControl) {
         const HOUSENUMBER_REGEXP = /^[0-9]+$/;
-        return '' + control.value === '' || HOUSENUMBER_REGEXP.test(control.value) ? null : {
-            housenumber: {
-                valid: false
-            }
+
+        if (control.value !== null) {
+            return '' + control.value === '' || HOUSENUMBER_REGEXP.test(control.value) ? null : {
+                housenumber: true
+            };
+        }
+    }
+
+    public static woonplaatsValidator(control: AbstractControl) {
+        const WOONPLAATS_REGEXP = /^[\x200-9a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂'\-\(\)]+$/;
+        return '' + control.value === '' || WOONPLAATS_REGEXP.test(control.value) ? null : {
+            woonplaats: true
+        };
+    }
+
+    public static straatValidator(control: AbstractControl) {
+        const STRAAT_REGEXP = /^[\x200-9a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂'\-\(\)]+$/;
+        return '' + control.value === '' || STRAAT_REGEXP.test(control.value) ? null : {
+            straat: true
         };
     }
 
     public static postalcodeValidator(control: AbstractControl) {
-        const POSTALCODE_REGEXP = /^([1-9][0-9]{3}[a-z|A-Z]{2})$/;
-        return '' + control.value === '' || POSTALCODE_REGEXP.test(control.value) ? null : {
-            postalcode: {
-                valid: false
-            }
-        };
+        const POSTALCODE_REGEXP = /^[1-9]{1}\d{3}[a-zA-Z]{2}$/;
+        if (control.value !== null) {
+            return '' + control.value === '' || POSTALCODE_REGEXP.test(control.value) ? null : {
+                postalcode: true
+            };
+        }
     }
 
     public static phonenumberValidator(control: AbstractControl) {
@@ -146,6 +161,25 @@ export class CustomValidators {
                 valid: false
             }
         };
+    }
+
+    public static phonenumberValidatorNederland(control: AbstractControl) {
+        const PHONENUMBER_NEDERLAND_REGEXP = /^0[0-9]{9}$/;
+
+        if (control.value !== null) {
+            return '' + control.value === '' || PHONENUMBER_NEDERLAND_REGEXP.test(control.value) ? null : {
+                phonenumber: true
+            };
+        }
+    }
+
+    public static phonenumberValidatorBuitenland(control: AbstractControl) {
+        const PHONENUMBER_BUITENLAND_REGEXP = /^(\+)?[0-9a-zA-Z\-\(\).]{1,25}$/;
+        if (control.value !== null) {
+            return '' + control.value === '' || PHONENUMBER_BUITENLAND_REGEXP.test(control.value) ? null : {
+                phonenumber: true
+            };
+        }
     }
 
     public static passwordValidator(control: AbstractControl) {
@@ -170,6 +204,16 @@ export class CustomValidators {
         const FACTUUR_NUMMER = /^[a-zA-Z0-9\.\-_]*$/;
         return '' + control.value === '' || FACTUUR_NUMMER.test(control.value) ? null : {
             factuurNr: {
+                valid: false
+            }
+        };
+    }
+
+    // Loonheffingennummer 123456782L01
+    public static LoonheffingennummerValidator(control: AbstractControl) {
+        const LHNR_REGEXP = /^[0-9]{9}L[0-9]{2}$/;
+        return '' + control.value === '' || LHNR_REGEXP.test(control.value) ? null : {
+            invalidlhnummer: {
                 valid: false
             }
         };
@@ -334,7 +378,8 @@ export class CustomValidators {
 
     public static validBIC(control: AbstractControl) {
         const CODE_REGEXP = RegExp(/^([a-zA-Z]){4}([a-zA-Z]){2}([0-9a-zA-Z]){2}([0-9a-zA-Z]{3})?$/);
-        let result = CODE_REGEXP.test(control.value) ? null : { invalidbic: false };
+        const bic = !!control && !!control.value ? (control.value as string).replace(/\s/g, '') : '';
+        const result = CODE_REGEXP.test(bic) ? null : { invalidbic: false };
         return result;
     }
 

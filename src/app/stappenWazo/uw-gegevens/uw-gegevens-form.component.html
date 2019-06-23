@@ -1,166 +1,192 @@
-<p>
-</p>
-
 <form [formGroup]="form">
-    
     <div class="row">
         <div class="col-sm-12">
             <form-control-group field="datumVermoedelijkeBevalling">
                 <legend class="label legend-label">
-                    <label for="datumVermoedelijkeBevalling">Op welke datum bent u uitgerekend? <abbr class="uwv-required_mark" title="Verplicht">*</abbr></label>
+                    <label for="datumVermoedelijkeBevalling">
+                        <span uwvLabel [groupId]="labelGroupId" labelId="UitgerekendDatum"></span>
+                        <abbr class="uwv-required_mark" aria-label="Verplicht" title="verplicht">*</abbr>
+                    </label>
                 </legend>
                 <date-picker geasocieerdeLabel="datumVermoedelijkeBevalling" class="form-group uwv-chain_duo" formControlName="datumVermoedelijkeBevalling" id="datumVermoedelijkeBevalling"
-                                [placeholder]="'dd-mm-jjjj'" 
-                                [options]="utilities.datePickerOptions()" (dateChanged)="onDatumChanged($event)">
+                             [placeholder]="'dd-mm-jjjj'"
+                             [options]="utilities.datePickerOptions()" (dateChanged)="onDatumChanged($event)">
                 </date-picker>
                 <validation-message-for field="datumVermoedelijkeBevalling">
-                    <validation-message error="date">Er is een ongeldige uitgerekende datum ingevuld.</validation-message>
-                    <validation-message error="required">Er is niet ingevuld wat uw uitgerekende datum is.</validation-message>
-                    <validation-message error="toekomst">De ingevoerde datum mag niet in de toekomst liggen.</validation-message>                 
+                    <validation-message error="date"><span uwvLabel [groupId]="labelGroupId" labelId="OngeldigeUitgerekendDatum"></span></validation-message>
+                    <validation-message error="datumVerplicht"><span uwvLabel [groupId]="labelGroupId" labelId="NietIngevuldUitgerekendDatum"></span></validation-message>
+                    <validation-message error="toekomst"><span uwvLabel [groupId]="labelGroupId" labelId="NietToekomstUitgerekendDatum"></span></validation-message>
                 </validation-message-for>
             </form-control-group>
         </div>
     </div>
-    
 
     <div class="row">
         <div class="col-sm-12">
             <form-control-fieldset field="bevallen">
-                <legend class="label legend-label">Bent u al bevallen?
-                    <abbr class="uwv-required_mark" aria-label="Verplicht" title="verplicht">*
-                    <span class="uwv-abbr_title">Verplicht</span>                
-                    </abbr>
+                <legend class="label legend-label">
+                    <span uwvLabel [groupId]="labelGroupId" labelId="AlBevallen"></span>
+                    <abbr class="uwv-required_mark" aria-label="Verplicht" title="verplicht">*</abbr>
                 </legend>
-            <div class="radio radio-custom">
-                <label for="bevallen-ja">
-                    <input id="bevallen-ja" name="bevallen" formControlName="bevallen" type="radio" value="ja">
-                    <span>Ja</span>
-                </label>
-            </div>
-            <div class="radio radio-custom">
-                <label for="bevallen-nee">
-                    <input id="bevallen-nee" name="bevallen" formControlName="bevallen" type="radio" value="nee">
-                    <span>Nee</span>
-                </label>
-            </div>
-            <validation-message-for field="bevallen">
-                <validation-message error="required">Er is niet aangegeven of u al bevallen bent.</validation-message>
-            </validation-message-for>
+                <div class="radio radio-custom">
+                    <label for="bevallen-ja">
+                        <input id="bevallen-ja" name="bevallen" formControlName="bevallen" type="radio" value="ja">
+                        <span uwvLabel [groupId]="labelGroupId" labelId="AlBevallenJa"></span>
+                    </label>
+                </div>
+                <div class="radio radio-custom">
+                    <label for="bevallen-nee">
+                        <input id="bevallen-nee" name="bevallen" formControlName="bevallen" type="radio" value="nee">
+                        <span uwvLabel [groupId]="labelGroupId" labelId="AlBevallenNee"></span>
+                    </label>
+                </div>
+                <validation-message-for field="bevallen">
+                    <validation-message error="required">  <span uwvLabel [groupId]="labelGroupId" labelId="BevallenNietAangegeven"></span></validation-message>
+                </validation-message-for>
             </form-control-fieldset>
         </div>
     </div>
 
-    <div class="row" *ngIf="form.getModel().bevallen === 'ja'">
-        <div class="col-sm-12">
-            <form-control-group field="datumBevalling">
-                <legend class="label legend-label">
-                    <label for="datumBevalling">Wat was de bevallingsdatum? <abbr class="uwv-required_mark" title="Verplicht">*</abbr></label>
-                </legend>
-                <date-picker geasocieerdeLabel="datumBevalling" class="form-group uwv-chain_duo" formControlName="datumBevalling" id="datumBevalling"
+    <ng-container *ngIf="sectieBevallingZichtbaar()">
+        <div class="row">
+            <div class="col-sm-12">
+                <form-control-group field="datumBevalling">
+                    <legend class="label legend-label">
+                        <label for="datumBevalling">
+                            <span uwvLabel [groupId]="labelGroupId" labelId="WanneerBevallen"></span>
+                            <abbr class="uwv-required_mark" aria-label="Verplicht" title="verplicht">*</abbr>
+                        </label>
+                    </legend>
+                    <date-picker geasocieerdeLabel="datumBevalling" class="form-group uwv-chain_duo" formControlName="datumBevalling" id="datumBevalling"
                                 [placeholder]="'dd-mm-jjjj'" [attr.data-ta-id]="'periode-bezwaardatum'"
                                 [options]="utilities.datePickerOptions()" (dateChanged)="onDatumChanged($event)">
-                </date-picker>
-                <validation-message-for field="datumBevalling">
-                    <validation-message error="date">Er is een ongeldige bevallingsdatum ingevuld.</validation-message>
-                    <validation-message error="RequiredExpressionValidator">Er is niet ingevuld wat uw bevallingsdatum is.</validation-message>
-                    <validation-message error="toekomst">De ingevoerde datum mag niet in de toekomst liggen.</validation-message>
-                </validation-message-for>
-            </form-control-group>
-        </div>
-    </div>
-
-<div class="row" *ngIf="form.getModel().bevallen === 'ja'">
-    <div class="col-sm-12">
-        <form-control-fieldset field="kindOverleden">
-            <legend class="label legend-label">
-                <label for="kindOverleden">Geef aan of één van onderstaande situaties voor u geldt</label>
-            </legend>
-            <div class="checkbox checkbox-custom">
-                <label>
-                    <input type="checkbox" id="kindOverleden"
-                           formControlName="kindOverleden"                                                      
-                           [attr.data-ta-id]="'kindOverleden'" />
-                    <span>Mijn baby is voor of tijdens de bevalling overleden</span>
-                </label>
+                    </date-picker>
+                    <validation-message-for field="datumBevalling">
+                        <validation-message error="date"><span uwvLabel [groupId]="labelGroupId" labelId="OngeldigeBevallingsDatum"></span></validation-message>
+                        <validation-message error="datumVerplicht"><span uwvLabel [groupId]="labelGroupId" labelId="NietIngevuldBevallingsDatum"></span></validation-message>
+                        <validation-message error="toekomst"><span uwvLabel [groupId]="labelGroupId" labelId="NietToekomstBevallingsDatum"></span></validation-message>
+                    </validation-message-for>
+                </form-control-group>
             </div>
-        </form-control-fieldset>
-    </div>
-</div>
+        </div>
 
+        <div class="row">
+            <div class="col-sm-12">
+                <form-control-fieldset field="kindOverleden">
+                    <legend class="label legend-label">
+                        <label for="kindOverleden"><span uwvLabel [groupId]="labelGroupId" labelId="OnderstaandeSituaties"></span></label>
+                    </legend>
+                    <div class="checkbox checkbox-custom">
+                        <label>
+                            <input type="checkbox" id="kindOverleden"
+                                formControlName="kindOverleden"
+                                [attr.data-ta-id]="'kindOverleden'" />
+                            <span uwvLabel [groupId]="labelGroupId" labelId="BabyOverleden"></span>
+                        </label>
+                    </div>
+                </form-control-fieldset>
+            </div>
+        </div>
+    </ng-container>
 
     <div class="row">
         <div class="col-sm-12">
-            <form-control-fieldset *ngIf="
-                valideIDateModel(form.getModel().datumVermoedelijkeBevalling) 
-                && (form.getModel().bevallen === 'nee' || (form.getModel().bevallen === 'ja' && form.getModel().datumBevalling !== null && !form.vroeggeboorte()))" field="keuzeStartUitkering">
-                <legend class="label legend-label">Wanneer wilt u dat de zwangerschapsuitkering begint? 
-                    <abbr class="uwv-required_mark" aria-label="Verplicht" title="verplicht">*
-                    <span class="uwv-abbr_title">Verplicht</span>                
-                    </abbr>
+            <form-control-fieldset *ngIf="keuzeStartUitkeringZichtbaar()" field="keuzeStartUitkering">
+                <legend class="label legend-label">
+                    <span uwvLabel [groupId]="labelGroupId" labelId="BeginZwangerschapsuitkering"></span>
+                    <abbr class="uwv-required_mark" aria-label="Verplicht" title="verplicht">*</abbr>
                 </legend>
                 <div class="radio radio-custom">
                     <label for="keuze-startuitkering-begin">
                         <input id="keuze-startuitkering-begin" name="keuzeStartUitkering" formControlName="keuzeStartUitkering" type="radio" value="begin">
-                        <span>{{ meerling ? 10 : 6 }} weken voor dag na uitgerekende datum: {{ form.flexibiliseringsperiode().min | date: 'EEEE d LLLL yyyy' }}  </span>
+                        <span>{{ meerling ? 10 : 6 }}  <span uwvLabel [groupId]="labelGroupId" labelId="AantalWeken"></span> {{ form.flexibiliseringsperiode().min | date: 'EEEE d LLLL yyyy' }}  </span>
                     </label>
                 </div>
                 <div class="radio radio-custom">
-                    <label for="keuze-startuitkering-eind">                        
+                    <label for="keuze-startuitkering-eind">
                         <input id="keuze-startuitkering-eind" name="keuzeStartUitkering" formControlName="keuzeStartUitkering" type="radio" value="eind">
                         <span *ngIf="equalDates(form.flexibiliseringsperiodeMetDatumBevalling().max, form.flexibiliseringsperiode().max)">
-                            {{ meerling ? 8 : 4 }} weken voor dag na uitgerekende datum: {{ form.flexibiliseringsperiode().max | date: 'EEEE d LLLL yyyy' }}  
+                            {{ meerling ? 8 : 4 }}  <span uwvLabel [groupId]="labelGroupId" labelId="AantalWeken"></span>  {{ form.flexibiliseringsperiode().max | date: 'EEEE d LLLL yyyy' }}
                         </span>
                         <span *ngIf="!equalDates(form.flexibiliseringsperiodeMetDatumBevalling().max, form.flexibiliseringsperiode().max)">
-                            U bent al bevallen. U kunt uiterlijk {{ form.flexibiliseringsperiodeMetDatumBevalling().max | date: 'EEEE d LLLL yyyy' }} uw uitkering laten ingaan. 
+                            <span uwvLabel [groupId]="labelGroupId" labelId="UBentBevallen"></span>
+                            <span uwvLabel [groupId]="labelGroupId" labelId="Uiterlijk"></span> {{ form.flexibiliseringsperiodeMetDatumBevalling().max | date: 'EEEE d LLLL yyyy' }}
+                            <span uwvLabel [groupId]="labelGroupId" labelId="IngaanUitkering"></span>
                         </span>
                     </label>
                 </div>
-                <div class="radio radio-custom">
+                <div class="radio radio-custom">                    
                     <label for="keuze-startuitkering-anders">
                         <input id="keuze-startuitkering-anders" name="keuzeStartUitkering" formControlName="keuzeStartUitkering" type="radio" value="anders">
-                        <span>Anders, namelijk op</span>                            
+                        <span uwvLabel [groupId]="labelGroupId" labelId="AndersOp"></span>
                     </label>
-                    <ng-container *ngIf="form.getModel().keuzeStartUitkering === 'anders'">
-                    <date-picker style="margin-left: 15px" geasocieerdeLabel="datumuitkering" class="form-group uwv-chain_duo" formControlName="datumUitkering" id="datumuitkering"
-                            [placeholder]="'dd-mm-jjjj'" 
-                            [options]="utilities.datePickerOptions()" (dateChanged)="onDatumChanged($event)">
-                    </date-picker>
-                    <validation-message-for field="datumUitkering">
-                        <validation-message error="date">Er is een ongeldige uitkeringsdatum ingevuld.</validation-message>
-                        <validation-message error="RequiredExpressionValidator">Er is niet ingevuld wanneer u de uitkering wilt laten ingaan.</validation-message>
-                        <validation-message error="DatumUitkeringNietValide" *ngIf="equalDates(form.flexibiliseringsperiodeMetDatumBevalling().max, form.flexibiliseringsperiode().max)">De ingangsdatum van de zwangerschapsuitkering moet ingaan tussen 6 en 4 weken vóór de dag na uw uitgerekende datum. Dat is tussen {{ form.flexibiliseringsperiode().min | date: 'EEEE d LLLL yyyy' }} en {{ form.flexibiliseringsperiode().max | date: 'EEEE d LLLL yyyy' }}.</validation-message>
-                        <validation-message error="DatumUitkeringNietValide" *ngIf="!equalDates(form.flexibiliseringsperiodeMetDatumBevalling().max, form.flexibiliseringsperiode().max)">U bent al bevallen. De ingangsdatum van de zwangerschapsuitkering moet ingaan tussen {{ form.flexibiliseringsperiodeMetDatumBevalling().min | date: 'EEEE d LLLL yyyy' }} en {{ form.flexibiliseringsperiodeMetDatumBevalling().max | date: 'EEEE d LLLL yyyy' }}.</validation-message>
-                    </validation-message-for>
+                    <ng-container *ngIf="form.getModel().keuzeStartUitkering === KeuzeStartUitkeringEnum.Anders">                        
+                        <date-picker style="margin-left: 15px" geasocieerdeLabel="datumuitkering" class="form-group uwv-chain_duo" formControlName="datumUitkering" id="datumuitkering"
+                                     [placeholder]="'dd-mm-jjjj'"
+                                     [options]="utilities.datePickerOptions()" (dateChanged)="onDatumChanged($event)">
+                        </date-picker>
+                        <validation-message-for field="datumUitkering">
+                            <validation-message error="date"> <span uwvLabel [groupId]="labelGroupId" labelId="OngeldigeUitgerekendDatum"></span></validation-message>
+                            <validation-message error="datumVerplicht"> <span uwvLabel [groupId]="labelGroupId" labelId="IngaanUitkeringNietIngevuld"></span></validation-message>
+                            <validation-message error="DatumUitkeringNietValide" *ngIf="equalDates(form.flexibiliseringsperiodeMetDatumBevalling().max, form.flexibiliseringsperiode().max)">
+                                <span uwvLabel [groupId]="labelGroupId" labelId="ingangsdatumWeken" *ngIf="!meerling"></span>
+                                <span uwvLabel [groupId]="labelGroupId" labelId="ingangsdatumWekenMeerling" *ngIf="meerling"></span>
+                                Dat is tussen {{ form.flexibiliseringsperiode().min | date: 'EEEE d LLLL yyyy' }} en {{ form.flexibiliseringsperiode().max | date: 'EEEE d LLLL yyyy' }}.
+                            </validation-message>
+                            <validation-message error="DatumUitkeringNietValide" *ngIf="!equalDates(form.flexibiliseringsperiodeMetDatumBevalling().max, form.flexibiliseringsperiode().max)">
+                                <span uwvLabel [groupId]="labelGroupId" labelId="ingangsdatumPeriode"></span> {{ form.flexibiliseringsperiodeMetDatumBevalling().min | date: 'EEEE d LLLL yyyy' }} en {{ form.flexibiliseringsperiodeMetDatumBevalling().max | date: 'EEEE d LLLL yyyy' }}.
+                            </validation-message>
+                        </validation-message-for>
                     </ng-container>
                 </div>
                 <validation-message-for field="keuzeStartUitkering">
-                    <validation-message error="RequiredExpressionValidator">Er is niet ingevuld wanneer u de uitkering wilt laten ingaan.</validation-message>
+                    <validation-message error="RequiredExpressionValidator"><span uwvLabel [groupId]="labelGroupId" labelId="keuzeStartUitkeringValidatie"></span></validation-message>
                 </validation-message-for>
             </form-control-fieldset>
-            
-            <span *ngIf="form.getModel().bevallen === 'ja' && form.vroeggeboorte()">
-                <div class="form-control-help text-warning" style="display: block;">
-                    <span class="icon icon-sm icon-help-warning"></span>                                    
-                    Omdat u al bent bevallen gaat uw verlof automatisch 1 dag na uw bevalling in.
+
+            <span *ngIf="form.vroeggeboorte()">
+                <div class="form-control-help text-warning">
+                    <p>
+                        <span class="icon icon-sm icon-help-warning"></span>
+                        <span uwvLabel [groupId]="labelGroupId" labelId="VroeggeboorteJa"></span>
+                    </p>
                 </div>
             </span>
+
+            <ng-container *ngIf="uitkeringsdatumOuderDanEenJaar()">
+                <div class="form-control-help text-warning">
+                    <p>
+                        <span class="icon icon-sm icon-help-warning"></span>
+                        <span uwvLabel [groupId]="labelGroupId" labelId="UitkeringsdatumOuderDanEenJaar"></span>
+                    </p>
+                </div>
+            </ng-container>
         </div>
     </div>
+
     <ng-container *ngIf="stappenVariant == StappenVariantEnum.ww">
-        <hr>
+        <legend class="label legend-label">
+            <span uwvLabel [groupId]="labelGroupId" labelId="IntentieVerklaring"></span>
+            <abbr class="uwv-required_mark" aria-label="Verplicht" title="verplicht">*</abbr>
+        </legend>
         <form-control-fieldset field="keuzeStartUitkering">
             <div class="checkbox checkbox-custom">
                 <label for="intentieverklaring">
                     <input id="intentieverklaring" type="checkbox" name="intentieverklaring" formControlName="intentieverklaring">
-                        <span>
-                        Ik geef op dit formulier juiste en volledige informatie over mijzelf en mijn situatie.
-                        <abbr class="uwv-required_mark" title="Verplicht">*<span class="uwv-abbr_title">Verplicht</span></abbr>
+                    <span>
+                        <span uwvLabel [groupId]="labelGroupId" labelId="IntentieVerklaringMelding"></span>   
                     </span>
                 </label>
             </div>
             <validation-message-for field="intentieverklaring">
-                <validation-message error="RequiredExpressionValidator">Er moet een akkoord worden gegeven op de intentieverklaring.</validation-message>
+                <validation-message error="RequiredExpressionValidator"> <span uwvLabel [groupId]="labelGroupId" labelId="IntentieVerklaringValidatie"></span></validation-message>
             </validation-message-for>
         </form-control-fieldset>
+    </ng-container>
+
+    <ng-container *ngIf="!!params['debug']">
+        Debuginformatie:<br />
+        uitkeringsjaar = {{ uitkeringsjaar() | json }}<br />
+        uitkeringsdatum = {{ uitkeringsdatum() | date: 'EEEE d LLLL yyyy' }}<br />
     </ng-container>
 </form>

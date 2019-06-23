@@ -1,0 +1,23 @@
+<!--<ng-container *ngIf="isCompleted">-->
+
+<div *ngIf="adres?.resultaat === 'Succes'">
+
+    <div class="definition-list__pair">
+        <dt class="definition-list__term" uwvLabel [groupId]="labelGroupId" labelId="adres"></dt>
+        <dd class="definition-list__description">
+            {{ adres?.straat }} {{ adres?.huisnummer }}{{ adres?.huisnummertoevoeging }}
+        </dd>
+    </div>
+
+    <div class="definition-list__pair">
+        <dt class="definition-list__term" uwvLabel [groupId]="labelGroupId" labelId="postcode"></dt>
+        <dd class="definition-list__description">{{ adres?.postcode }}</dd>
+    </div>
+    <div class="definition-list__pair">
+        <dt class="definition-list__term" uwvLabel [groupId]="labelGroupId" labelId="plaats"></dt>
+        <dd class="definition-list__description">{{ adres?.woonplaats }}</dd>
+    </div>   
+
+</div>
+<br />
+

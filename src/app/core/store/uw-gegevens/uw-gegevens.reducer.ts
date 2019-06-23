@@ -1,7 +1,7 @@
 import * as UwGegevensActions from './uw-gegevens.actions';
-import { UwGegevens } from '../../../shared/models/uw-gegevens';
+import { UwGegevensModel } from '../../../shared/models/uw-gegevens-model';
 
-export function uwgegevensReducer(state: UwGegevens, action: UwGegevensActions.Actions) {
+export function uwgegevensReducer(state: UwGegevensModel, action: UwGegevensActions.Actions) {
     switch (action.type) {
         case UwGegevensActions.SAVE:
             return action.payload;

@@ -1,1 +1,14 @@
 
+<div class="panel">
+    <div class="panel-body">
+        <p> <span uwvLabel [groupId]="labelGroupId" labelId="kop-verplichte-velden"></span></p>
+       
+        <werk-en-inkomen-form [forceValidation]="submitted" [uitkeringsDatum]="uitkeringsjaar$ | async" [labelGroupId]="labelGroupId"></werk-en-inkomen-form>
+
+        <div class="btn-container btn-container-right-reverse">            
+            <button class="btn btn-primary" (click)="volgendeClicked()" 
+            data-ta-id="werk-en-inkomen-volgende">Volgende</button>
+            <a class="btn btn-link" href="/mijnuwv/aanvragen" data-ta-id="werk-en-inkomen-annuleren">Annuleren</a>            
+        </div>
+    </div>
+</div>

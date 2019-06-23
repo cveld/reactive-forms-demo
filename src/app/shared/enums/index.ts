@@ -1,5 +1,9 @@
+export * from './heelkalenderjaarzez.enum';
+export * from './indicatieloonheffingskorting.enum';
 export * from './janee.enum';
+export * from './keuzeStartUitkering.enum';
+export * from './situatieinkomsten.enum';
+export * from './soortrekeningnummer.enum';
 export * from './stappenvariant.enum';
 export * from './wwofzelfstandig.enum';
 export * from './wwsituatie.enum';
-

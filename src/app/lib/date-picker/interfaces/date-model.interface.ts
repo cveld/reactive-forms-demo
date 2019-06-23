@@ -1,4 +1,4 @@
-import { IDate } from "./date.interface";
+import { IDate } from './date.interface';
 
 export interface IDateModel {
     date: IDate;

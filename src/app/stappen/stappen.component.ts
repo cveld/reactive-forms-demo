@@ -16,8 +16,6 @@ export class StappenComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    console.log(this.stappen);
-    console.log(this.actieveStap);
   }
 
   ngOnChanges(changes: SimpleChanges) {

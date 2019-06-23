@@ -1,0 +1,277 @@
+
+<form [formGroup]="form">        
+    <div class="row">
+        <div class="col-sm-12">
+            <form-control-fieldset field="situatieInkomsten">
+                <legend class="label legend-label">
+                    <span uwvLabel [groupId]="labelGroupId" labelId="vraag-situatieInkomsten">situatieInkomsten</span>
+                    <abbr class="uwv-required_mark" aria-label="Verplicht" title="verplicht">*</abbr>
+                </legend>
+                <div class="radio radio-custom">
+                    <label for="situatieInkomsten-EigenOnderneming">
+                        <input id="situatieInkomsten-EigenOnderneming" name="situatieInkomsten" formControlName="situatieInkomsten" type="radio" value="EigenOnderneming">
+                        <span uwvLabel [groupId]="labelGroupId" labelId="vraag-situatieInkomsten-antwoord-EigenOnderneming">EigenOnderneming</span>
+                    </label>
+                </div>
+                <div class="radio radio-custom">
+                    <label for="situatieInkomsten-AlfaParticuliereHulp">
+                        <input id="situatieInkomsten-AlfaParticuliereHulp" name="situatieInkomsten" formControlName="situatieInkomsten" type="radio" value="AlfaParticuliereHulp">
+                        <span uwvLabel [groupId]="labelGroupId" labelId="vraag-situatieInkomsten-antwoord-AlfaParticuliereHulp">AlfaParticuliereHulp</span>
+                    </label>
+                </div>
+                <div class="radio radio-custom">
+                    <label for="situatieInkomsten-BedrijfEchtgenootPartner">
+                        <input id="situatieInkomsten-BedrijfEchtgenootPartner" name="situatieInkomsten" formControlName="situatieInkomsten" type="radio" value="BedrijfEchtgenootPartner">
+                        <span uwvLabel [groupId]="labelGroupId" labelId="vraag-situatieInkomsten-antwoord-BedrijfEchtgenootPartner">BedrijfEchtgenootPartner</span>
+                    </label>
+                </div>
+                <validation-message-for field="situatieInkomsten">
+                    <validation-message error="required"><span uwvLabel [groupId]="labelGroupId" labelId="error-situatieInkomsten-required"></span></validation-message>
+                </validation-message-for>
+            </form-control-fieldset>
+        </div>
+    </div>
+    <div class="row" *ngIf="showKVKNummer()">
+        <div class="col-sm-12">
+            <form-control-group field="kvknummer">
+                <legend class="label legend-label">
+                    <label for="kvknummer">
+                        <span uwvLabel [groupId]="labelGroupId" labelId="vraag-kvknummer">Kvk-nummer?</span> 
+                        <abbr class="uwv-required_mark" aria-label="Verplicht" title="Verplicht">*</abbr>
+                    </label>
+                </legend>
+                <input id="kvknummer" type="text" name="kvknummer" formControlName="kvknummer" maxlength="8" class="form-control">
+                <validation-message-for field="kvknummer">                            
+                    <validation-message error="required"><span uwvLabel [groupId]="labelGroupId" labelId="error-kvknummer-required"></span></validation-message>    
+                    <validation-message error="pattern"><span uwvLabel [groupId]="labelGroupId" labelId="error-kvknummer-pattern"></span></validation-message>                          
+                </validation-message-for>
+            </form-control-group>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="showIndicatieUrencriteriumZEZ()">
+        <div class="col-sm-12">
+            <form-control-fieldset field="indicatieUrencriteriumZEZ">
+                <legend class="label legend-label">
+                    <span uwvLabel [groupId]="labelGroupId" labelId="vraag-indicatieUrencriteriumZEZ-1">indicatieUrencriteriumZEZ</span>
+                    {{uitkeringsDatum - 1}}
+                    <span uwvLabel [groupId]="labelGroupId" labelId="vraag-indicatieUrencriteriumZEZ-2">?</span>
+                    <abbr class="uwv-required_mark" aria-label="Verplicht" title="verplicht">*</abbr>
+                </legend>
+                <div class="radio radio-custom">
+                    <label for="indicatieUrencriteriumZEZ-ja">
+                        <input id="indicatieUrencriteriumZEZ-ja" name="indicatieUrencriteriumZEZ" formControlName="indicatieUrencriteriumZEZ" type="radio" value="ja">
+                        <span uwvLabel [groupId]="labelGroupId" labelId="vraag-indicatieUrencriteriumZEZ-antwoord-ja">Ja</span>
+                    </label>
+                </div>
+                <div class="radio radio-custom">
+                    <label for="indicatieUrencriteriumZEZ-nee">
+                        <input id="indicatieUrencriteriumZEZ-nee" name="indicatieUrencriteriumZEZ" formControlName="indicatieUrencriteriumZEZ" type="radio" value="nee">
+                        <span uwvLabel [groupId]="labelGroupId" labelId="vraag-indicatieUrencriteriumZEZ-antwoord-nee">Nee</span>
+                    </label>
+                </div>
+                <validation-message-for field="indicatieUrencriteriumZEZ">
+                    <validation-message error="required"><span uwvLabel [groupId]="labelGroupId" labelId="error-indicatieUrencriteriumZEZ-required"></span> {{kalenderJaar}}.</validation-message>
+                </validation-message-for>
+            </form-control-fieldset>
+        </div>
+    </div>
+    
+    <div class="row" *ngIf="showDatumStartWerk()">
+        <div class="col-sm-12">
+            <form-control-group field="datumStartWerk">
+                <legend class="label legend-label">
+                    <label for="datumStartWerk">
+                        <span uwvLabel [groupId]="labelGroupId" labelId="vraag-datumStartWerk">Wat was de datumStartWerk?</span>
+                        <abbr class="uwv-required_mark" aria-label="Verplicht" title="Verplicht">*</abbr></label>
+                </legend>
+                <date-picker geasocieerdeLabel="datumStartWerk" class="form-group uwv-chain_duo" formControlName="datumStartWerk" id="datumStartWerk"
+                                [placeholder]="'dd-mm-jjjj'" [attr.data-ta-id]="'datumStartWerk'"
+                                [options]="utilities.datePickerOptions()">
+                </date-picker>
+                <validation-message-for field="datumStartWerk">
+                    <validation-message error="required"><span uwvLabel [groupId]="labelGroupId" labelId="error-datumStartWerk-required"></span> </validation-message>
+                    <validation-message error="date"><span uwvLabel [groupId]="labelGroupId" labelId="error-datumStartWerk-date"></span></validation-message>
+                    <validation-message error="toekomst"><span uwvLabel [groupId]="labelGroupId" labelId="error-datumStartWerk-toekomst"></span></validation-message>
+                </validation-message-for>
+            </form-control-group>
+        </div>
+    </div>
+    
+    <div class="row" *ngIf="showHeelKalenderjaarZEZ()">
+        <div class="col-sm-12">
+            <form-control-fieldset field="heelKalenderjaarZEZ">
+                <legend class="label legend-label">
+                    <span uwvLabel [groupId]="labelGroupId" labelId="vraag-heelKalenderjaarZEZ">heelKalenderjaarZEZ?</span><span>{{uitkeringsDatum - 1}}?</span>
+                    <abbr class="uwv-required_mark" aria-label="Verplicht" title="verplicht">*</abbr>
+                </legend>
+                <div class="radio radio-custom">
+                    <label for="heelKalenderjaarZEZ-ja">
+                        <input id="heelKalenderjaarZEZ-ja" name="heelKalenderjaarZEZ" formControlName="heelKalenderjaarZEZ" type="radio" value="Ja">
+                        <span uwvLabel [groupId]="labelGroupId" labelId="vraag-heelKalenderjaarZEZ-antwoord-ja">Ja</span>
+                    </label>
+                </div>
+                <div class="radio radio-custom">
+                    <label for="heelKalenderjaarZEZ-NeeZelfstandig">
+                        <input id="heelKalenderjaarZEZ-NeeZelfstandig" name="heelKalenderjaarZEZ" formControlName="heelKalenderjaarZEZ" type="radio" value="NeeZelfstandig">
+                        <span uwvLabel [groupId]="labelGroupId" labelId="vraag-heelKalenderjaarZEZ-antwoord-NeeZelfstandig">NeeZelfstandig</span>
+                    </label>
+                </div>
+                <div class="radio radio-custom">
+                    <label for="heelKalenderjaarZEZ-NeeAO">
+                        <input id="heelKalenderjaarZEZ-NeeAO" name="heelKalenderjaarZEZ" formControlName="heelKalenderjaarZEZ" type="radio" value="NeeAO">
+                        <span uwvLabel [groupId]="labelGroupId" labelId="vraag-heelKalenderjaarZEZ-antwoord-NeeAO">NeeAO</span>
+                    </label>
+                </div>
+                <div class="radio radio-custom">
+                    <label for="heelKalenderjaarZEZ-NeeToelichting">
+                        <input id="heelKalenderjaarZEZ-NeeToelichting" name="heelKalenderjaarZEZ" formControlName="heelKalenderjaarZEZ" type="radio" value="NeeToelichting">
+                        <span uwvLabel [groupId]="labelGroupId" labelId="vraag-heelKalenderjaarZEZ-antwoord-NeeToelichting">NeeToelichting</span>
+                    </label>
+                </div>
+                <validation-message-for field="heelKalenderjaarZEZ">
+                    <validation-message error="required"><span uwvLabel [groupId]="labelGroupId" labelId="error-heelKalenderjaarZEZ-required-1"></span> {{uitkeringsDatum - 1}} <span uwvLabel [groupId]="labelGroupId" labelId="error-heelKalenderjaarZEZ-required-2"></span></validation-message>
+                </validation-message-for>
+            </form-control-fieldset>
+        </div>
+    </div>
+   
+    <div class="row" *ngIf="showToelichtingHeelKalenderjaarZEZ()">
+        <div class="col-sm-12">
+            <form-control-group field="toelichtingHeelKalenderjaarZEZ">
+                <input id="toelichtingHeelKalenderjaarZEZ" aria-label="Verplicht" type="text" name="toelichtingHeelKalenderjaarZEZ" formControlName="toelichtingHeelKalenderjaarZEZ" class="form-control" 
+                uwvLabel [groupId]="labelGroupId" labelId="vraag-toelichtingHeelKalenderjaarZEZ-placeholder" forAttr="placeholder">
+                <validation-message-for field="toelichtingHeelKalenderjaarZEZ">                            
+                    <validation-message error="required"><span uwvLabel [groupId]="labelGroupId" labelId="error-toelichtingHeelKalenderjaarZEZ-required-1"></span> {{uitkeringsDatum - 1}} <span uwvLabel [groupId]="labelGroupId" labelId="error-toelichtingHeelKalenderjaarZEZ-required-2"></span></validation-message>                            
+                </validation-message-for>
+            </form-control-group>
+        </div>
+    </div>
+    
+    <div class="row" *ngIf="showIndicatieAangifteIB1()">
+        <div class="col-sm-12">
+            <form-control-fieldset field="indicatieAangifteIB1">
+                <legend class="label legend-label">
+                    <span uwvLabel [groupId]="labelGroupId" labelId="vraag-aangifte-belasting-jaar">uitkeringsDatum-1</span><span>{{uitkeringsDatum - 1}}?</span>
+                    <abbr class="uwv-required_mark" aria-label="Verplicht" title="verplicht">*</abbr>
+                </legend>
+                <div class="radio radio-custom">
+                    <label for="indicatieAangifteIB1-ja">
+                        <input id="indicatieAangifteIB1-ja" name="indicatieAangifteIB1" formControlName="indicatieAangifteIB1" type="radio" value="ja">
+                        <span uwvLabel [groupId]="labelGroupId" labelId="vraag-aangifte-belasting-antwoord-ja">Ja</span>
+                    </label>
+                </div>
+                <div class="radio radio-custom">
+                    <label for="indicatieAangifteIB1-nee">
+                        <input id="indicatieAangifteIB1-nee" name="indicatieAangifteIB1" formControlName="indicatieAangifteIB1" type="radio" value="nee">
+                        <span uwvLabel [groupId]="labelGroupId" labelId="vraag-aangifte-belasting-antwoord-nee">Nee</span>
+                    </label>
+                </div>
+                <validation-message-for field="indicatieAangifteIB1">
+                    <validation-message error="required"><span uwvLabel [groupId]="labelGroupId" labelId="error-indicatieAangifteIB1-required-1"></span> {{uitkeringsDatum - 1}} <span uwvLabel [groupId]="labelGroupId" labelId="error-indicatieAangifteIB1-required-2"></span></validation-message>
+                </validation-message-for>
+            </form-control-fieldset>
+        </div>
+    </div>
+    
+    <div class="row" *ngIf="showBedragInkomstenIB1()">
+            <div class="col-sm-12">
+                <form-control-group field="bedragInkomstenIB1">
+                    <legend class="label legend-label">
+                        <label for="bedragInkomstenIB1">
+                            <span uwvLabel [groupId]="labelGroupId" labelId="vraag-aangifte-belasting-bedrag">bedragInkomstenIB1?</span>
+                            <abbr class="uwv-required_mark" aria-label="Verplicht" title="Verplicht">*</abbr></label>
+                    </legend>
+                    <div class="col-xs-6 col-md-3">
+                        <div class="input-group">
+                                <span class="input-group-addon">€</span>
+                                <input id="bedragInkomstenIB1" (blur)="onBlurBedragInkomstenIB1()" type="text" name="bedragInkomstenIB1" [value]="form.value.bedragInkomstenIB1" formControlName="bedragInkomstenIB1" class="form-control">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <validation-message-for field="bedragInkomstenIB1">                            
+                        <validation-message error="required"><span uwvLabel [groupId]="labelGroupId" labelId="error-bedragInkomstenIB1-required"></span></validation-message>                            
+                        <validation-message error="pattern"><span uwvLabel [groupId]="labelGroupId" labelId="error-bedragInkomstenIB1-pattern"></span></validation-message>                            
+                    </validation-message-for>
+                </form-control-group>
+            </div>
+        </div>
+    
+    <div class="row" *ngIf="showIndicatieAangifteIB2()">
+            <div class="col-sm-12">
+                <form-control-fieldset field="indicatieAangifteIB2">
+                    <legend class="label legend-label">
+                        <span uwvLabel [groupId]="labelGroupId" labelId="vraag-aangifte-belasting-jaar">uitkeringsDatum-2</span><span>{{uitkeringsDatum - 2}}?</span>
+                        <abbr class="uwv-required_mark" aria-label="Verplicht" title="verplicht">*</abbr>
+                    </legend>
+                    <div class="radio radio-custom">
+                        <label for="indicatieAangifteIB2-ja">
+                            <input id="indicatieAangifteIB2-ja" name="indicatieAangifteIB2" formControlName="indicatieAangifteIB2" type="radio" value="ja">
+                            <span uwvLabel [groupId]="labelGroupId" labelId="vraag-aangifte-belasting-antwoord-ja">Ja</span>
+                        </label>
+                    </div>
+                    <div class="radio radio-custom">
+                        <label for="indicatieAangifteIB2-nee">
+                            <input id="indicatieAangifteIB2-nee" name="indicatieAangifteIB2" formControlName="indicatieAangifteIB2" type="radio" value="nee">
+                            <span uwvLabel [groupId]="labelGroupId" labelId="vraag-aangifte-belasting-antwoord-nee">nee</span>
+                        </label>
+                    </div>
+                    <validation-message-for field="indicatieAangifteIB2">
+                        <validation-message error="required"><span uwvLabel [groupId]="labelGroupId" labelId="error-indicatieAangifteIB2-required-1"></span> {{uitkeringsDatum - 2}} <span uwvLabel [groupId]="labelGroupId" labelId="error-indicatieAangifteIB2-required-2"></span></validation-message>
+                        </validation-message-for>
+                </form-control-fieldset>
+            </div>
+        </div>
+
+    <div class="row" *ngIf="showBedragInkomstenIB2()">
+        <div class="col-sm-12">
+            <form-control-group field="bedragInkomstenIB2">
+                <legend class="label legend-label">
+                    <label for="bedragInkomstenIB2">
+                        <span uwvLabel [groupId]="labelGroupId" labelId="vraag-aangifte-belasting-bedrag">bedragInkomstenIB2?</span>
+                        <abbr class="uwv-required_mark" aria-label="Verplicht" title="Verplicht">*</abbr>
+                    </label>
+                </legend>
+                <div class="col-xs-6 col-md-3">
+                    <div class="input-group">
+                            <span class="input-group-addon">€</span>
+                            <input id="bedragInkomstenIB2" (blur)="onBlurBedragInkomstenIB2()" type="text" name="bedragInkomstenIB2" formControlName="bedragInkomstenIB2" class="form-control">
+                    </div>
+                </div>
+                <br>
+                <br>
+                <validation-message-for field="bedragInkomstenIB2">                            
+                    <validation-message error="required"><span uwvLabel [groupId]="labelGroupId" labelId="error-bedragInkomstenIB2-required"></span></validation-message>                            
+                    <validation-message error="pattern"><span uwvLabel [groupId]="labelGroupId" labelId="error-bedragInkomstenIB2-pattern"></span></validation-message>                            
+                </validation-message-for>
+            </form-control-group>
+        </div>
+    </div>
+    
+    <div class="row" *ngIf="showSchattingInkomsten()">
+        <div class="col-sm-12">
+            <form-control-group field="schattingInkomsten">
+                <legend class="label legend-label">
+                    <label for="schattingInkomsten">
+                        <span uwvLabel [groupId]="labelGroupId" labelId="vraag-schatting-inkomsten">schattingInkomsten?</span><span>{{uitkeringsDatum}}?</span> 
+                        <abbr class="uwv-required_mark" aria-label="Verplicht" title="Verplicht">*</abbr>
+                    </label>
+                </legend>
+                <div class="col-xs-6 col-md-3">
+                    <div class="input-group">
+                            <span class="input-group-addon">€</span>
+                            <input id="schattingInkomsten" (blur)="onBlurSchattingInkomsten()" type="text" name="schattingInkomsten" formControlName="schattingInkomsten" class="form-control">
+                    </div>
+                </div>
+                <br>
+                <br>
+                <validation-message-for field="schattingInkomsten">              
+                    <validation-message error="required"><span uwvLabel [groupId]="labelGroupId" labelId="error-schattingInkomsten-required"></span> {{uitkeringsDatum}}</validation-message>                            
+                    <validation-message error="pattern"><span uwvLabel [groupId]="labelGroupId" labelId="error-schattingInkomsten-pattern"></span> {{uitkeringsDatum}}</validation-message>                            
+                </validation-message-for>
+            </form-control-group>
+        </div>
+    </div>
+    
+</form>

@@ -1,7 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StappenComponent } from './stappen.component';
-import { StappenService } from '../../shared/services/stappen.service';
 
 describe('StappenComponent', () => {
   let comp: StappenComponent;
@@ -13,7 +12,6 @@ describe('StappenComponent', () => {
         StappenComponent,
       ],
       providers: [
-        StappenService
       ]
     }).compileComponents();
   }));

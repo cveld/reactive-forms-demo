@@ -5,12 +5,19 @@ import { actieveStapReducer } from './actievestap/actievestap.reducer';
 import { IAppState } from './app-state.interface';
 import { uwsituatieReducer } from './uw-situatie/uw-situatie.reducer';
 import { uwgegevensReducer } from './uw-gegevens/uw-gegevens.reducer';
+import { createServerOperationResultReducer } from 'edv-ngrx-server-operation';
 import { IResourceDictionary } from '../../shared/models/resources-dictionary';
+import { formulierReducer } from './formulier/formulier.reducer';
+import { werkeninkomenReducer } from './werk-en-inkomen/werk-en-inkomen.reducer';
+import { betaalwijzeReducer } from './betaalwijze/betaalwijze.reducer';
 
 export const AppStateReducer: ActionReducerMap<IAppState> = {
+    formulier: formulierReducer,
     actieveStap: actieveStapReducer,
     uwsituatie: uwsituatieReducer,
-    uwgegevens: uwgegevensReducer
+    uwgegevens: uwgegevensReducer,
+    werkEnInkomen: werkeninkomenReducer,
+    betaalwijze: betaalwijzeReducer
 };
 
 /**

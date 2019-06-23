@@ -1,5 +1,5 @@
 import { AbstractControl } from '@angular/forms';
-import { IDate, IDateModel } from '../../lib/date-picker/interfaces';
+import { IDate, IDateModel } from 'src/app/lib/date-picker/interfaces';
 
 export class DatumValidators {
     private static isValid(date: IDate): boolean {
@@ -7,13 +7,21 @@ export class DatumValidators {
         return date.month > 0 && date.year > 0 && date.day > 0;
     }
 
+    public static datumVerplicht(control: AbstractControl) {
+        return DatumValidators.isDatumNietInGevuld(control) ?
+            {
+                datumVerplicht: true
+            } : null;
+    }
+
     private static isDatumNietInGevuld(control: AbstractControl): boolean {
         const datumNietIngevuld: boolean = !control || !control.value
-        || !control.value.date || control.value.date.input === '' || !control.value.date.input;
+        || !control.value.date || !control.value.date.input;
+        // javascript: input !== '' && input !== undefined && input !== null && input !== false
         return datumNietIngevuld;
     }
 
-    public static datumNietValide(control: AbstractControl) {
+    public static datumValide(control: AbstractControl) {
         if (DatumValidators.isDatumNietInGevuld(control)) {
             return null;
         }

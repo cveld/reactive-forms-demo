@@ -4,6 +4,7 @@ import { StappenVariantEnum } from '../../shared/enums';
 import { UwGegevensComponent } from '../../stappenWazo/uw-gegevens/uw-gegevens.component';
 import { createSelector } from '@ngrx/store';
 import { WerkEnInkomenComponent } from '../../stappenWazo/werk-en-inkomen/werk-en-inkomen.component';
+import { BetaalwijzeComponent } from '../../stappenWazo/betaalwijze/betaalwijze.component';
 
 // https://ngrx.io/guide/store/selectors#using-selectors-for-multiple-pieces-of-state
 export const selectStappen = createSelector(
@@ -40,7 +41,7 @@ export const selectStappen = createSelector(
                     naamStap: 'Werk en inkomen'
                 },
                 {
-                    componentType: UwGegevensComponent,
+                    componentType: BetaalwijzeComponent,
                     naamStap: 'Betaalwijze'
                 }
             ];
@@ -50,7 +51,6 @@ export const selectStappen = createSelector(
 
 export const selectActieveStap = createSelector(
     selectStappen, selectActieveStapIndex, (stappen, index) =>  {
-        console.log(stappen, index);
         return {
             stappen,
             actieveStap: index

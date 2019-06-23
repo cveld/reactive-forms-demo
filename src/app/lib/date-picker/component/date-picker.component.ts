@@ -1336,11 +1336,19 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
     updateDateValue(date: IDate, clear: boolean, fromDb: boolean): void {
         // Updates date values
         this.selectedDate = date;
-        var formattedDate = this.formatDate(date);
+        const formattedDate = this.formatDate(date);
         if (fromDb) {
-            this.selectionDayTxt = clear ? "" : formattedDate;
+            this.selectionDayTxt = clear ? '' : formattedDate;
         }
-        this.inputFieldChanged.emit({ value: formattedDate, dateFormat: this.opts.dateFormat, valid: !clear });
+        let emitValue: string;
+        if (date.day === 0 && date.month === 0 && date.year === 0) {
+            // if user input was inconsistent / invalid date, return this very input to the DOM
+            emitValue = date.input;
+        } else {
+            // if user input was consistent, return the formatted date to the DOM
+            emitValue = formattedDate;
+        }
+        this.inputFieldChanged.emit({ value: emitValue, dateFormat: this.opts.dateFormat, valid: !clear });
         this.invalidDate = false;
         this.triggerChange(date);
     }
@@ -1530,7 +1538,13 @@ export class DatePicker implements OnChanges, ControlValueAccessor {
         else if (typeof selDate === "object") {
             date = selDate;
         }
-        this.selectionDayTxt = this.formatDate(date);
+        if (date.day === 0 && date.month === 0 && date.year === 0) {
+            // if user input was inconsistent, return input to DOM
+            this.selectionDayTxt = date.input;
+        } else {
+            // if user input was valid, return formatted date to DOM
+            this.selectionDayTxt = this.formatDate(date);
+        }
         return date;
     }
 

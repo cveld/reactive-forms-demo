@@ -1,3 +1,22 @@
 <div class="main_intro">
-    <h1>Bevestiging</h1>
+    <h1 uwvLabel [groupId]="labelGroupId" labelId="bevestiging-titel" data-ta-id="bevestigings-titel"></h1>
 </div>
+
+<section class="panel">
+    <div class="panel-body">
+
+        <div class="alert alert-success alert-v2 alert-icon alert-with-body" data-ta-id="verstuurd-bevestiging-melding" role="alert">
+            <span class="icon icon-successsign-v2 text-hide">informatie</span>
+            <h2 class="alert-header" uwvLabel [groupId]="labelGroupId" labelId="verstuurd-bevestiging-melding"></h2>
+        </div>
+
+        <div data-ta-id="bevestigin-alinea">
+            <h2 uwvLabel [groupId]="labelGroupId" labelId="alinea-titel"></h2>
+            <p uwvLabel [groupId]="labelGroupId" labelId="alinea-tekst"></p>
+        </div>
+
+        <p class="btn-container-right">
+            <a id="bevestigin-button-home" class="btn btn-primary" href="/mijnuwv" uwvLabel [groupId]="labelGroupId" labelId="home-button" tabindex="0"></a>
+        </p>
+    </div>
+</section>

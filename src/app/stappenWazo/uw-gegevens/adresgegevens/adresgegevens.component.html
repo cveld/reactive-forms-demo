@@ -1,1 +1,9 @@
-<adresgegevens-form [forceValidation]="formSubmitted"></adresgegevens-form>
+<!--<adresgegevens-readonly [labelGroupId]="labelGroupId" *ngIf="!isEditable"   [isCompleted]="isCompleted">-->
+<h2 class="panel-title">Contactgegevens</h2>
+<adresgegevens-readonly [adres]="adresgegevens">
+   
+</adresgegevens-readonly>
+
+<adresgegevens-form [forceValidation]="submitted" [data]="data">
+
+</adresgegevens-form>

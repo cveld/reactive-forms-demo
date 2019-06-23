@@ -1,0 +1,280 @@
+<form [formGroup]="form">
+    <div class="row">
+        <div class="col-sm-12">
+            <form-control-fieldset field="indicatieVrijwilligeZW">
+                <legend class="label legend-label">
+                    <span uwvLabel [groupId]="labelGroupId" labelId="vraag-indicatieVrijwilligeZW">indicatieVrijwilligeZW?</span>
+                    <abbr class="uwv-required_mark" aria-label="Verplicht" title="verplicht">*</abbr>
+                </legend>
+                <div class="radio radio-custom">
+                    <label for="indicatieVrijwilligeZW-ja">
+                        <input id="indicatieVrijwilligeZW-ja" name="indicatieVrijwilligeZW" formControlName="indicatieVrijwilligeZW"
+                               type="radio" [value]="jaNee.ja">
+                        <span uwvLabel [groupId]="labelGroupId" labelId="vraag-indicatieVrijwilligeZW-antwoord-ja"></span>
+                    </label>
+                </div>
+                <div class="radio radio-custom">
+                    <label for="indicatieVrijwilligeZW-nee">
+                        <input id="indicatieVrijwilligeZW-nee" name="indicatieVrijwilligeZW" formControlName="indicatieVrijwilligeZW"
+                               type="radio" [value]="jaNee.nee">
+                        <span uwvLabel [groupId]="labelGroupId" labelId="vraag-indicatieVrijwilligeZW-antwoord-nee"></span>
+                    </label>
+                </div>
+                <validation-message-for field="indicatieVrijwilligeZW">
+                    <validation-message error="required"><span uwvLabel [groupId]="labelGroupId" labelId="error-indicatieVrijwilligeZW-required"></span></validation-message>
+                </validation-message-for>
+            </form-control-fieldset>
+        </div>
+    </div>
+
+    <div *ngIf="isVrijwillig()">
+        <div uwvSnippet snippetId="BM-WAZO-STAP4-VRIJWILLIGE-ZW-LINKS"></div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-12">
+            <form-control-fieldset field="indicatieLoonheffingskorting">
+                <legend class="label legend-label">
+                    <span uwvLabel [groupId]="labelGroupId" labelId="vraag-indicatieLoonheffingskorting">indicatieLoonheffingskorting?</span>
+                    <abbr class="uwv-required_mark" aria-label="Verplicht" title="verplicht">*</abbr>
+                    &nbsp;
+                    <span uwvSnippet snippetId="BM-WAZO-STAP4-INFO-INDICATIE-LOONHEFFINGSKORTING"></span>
+                </legend>
+                <div class="radio radio-custom">
+                    <label for="indicatieLoonheffingskorting-ja">
+                        <input id="indicatieLoonheffingskorting-ja" name="indicatieLoonheffingskorting" formControlName="indicatieLoonheffingskorting"
+                               type="radio" value="Ja">
+                        <span uwvLabel [groupId]="labelGroupId" labelId="vraag-indicatieLoonheffingskorting-antwoord-ja">ja</span>
+                    </label>
+                </div>
+                <div class="radio radio-custom">
+                    <label for="indicatieLoonheffingskorting-neeandereinkomsten">
+                        <input id="indicatieLoonheffingskorting-neeandereinkomsten" name="indicatieLoonheffingskorting"
+                               formControlName="indicatieLoonheffingskorting" type="radio" value="NeeAndereInkomsten">
+                        <span uwvLabel [groupId]="labelGroupId" labelId="vraag-indicatieLoonheffingskorting-antwoord-nee-andere-inkomsten">NeeAndereInkomsten</span>
+                    </label>
+                </div>
+                <div class="radio radio-custom">
+                    <label for="indicatieLoonheffingskorting-neebijaangifte">
+                        <input id="indicatieLoonheffingskorting-neebijaangifte" name="indicatieLoonheffingskorting"
+                               formControlName="indicatieLoonheffingskorting" type="radio" value="NeeBijAangifte">
+                        <span uwvLabel [groupId]="labelGroupId" labelId="vraag-indicatieLoonheffingskorting-antwoord-nee-bij-aangifte">NeeBijAangifte</span>
+                    </label>
+                </div>
+                <validation-message-for field="indicatieLoonheffingskorting">
+                    <validation-message error="required"><span uwvLabel [groupId]="labelGroupId" labelId="error-indicatieLoonheffingskorting-required"></span></validation-message>
+                </validation-message-for>
+            </form-control-fieldset>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <form-control-fieldset field="soortRekeningnummer">
+                <legend class="label legend-label">
+                    <span uwvLabel [groupId]="labelGroupId" labelId="vraag-soortRekeningnummer">soortRekeningnummer?</span>
+                    <abbr class="uwv-required_mark" aria-label="Verplicht" title="verplicht">*</abbr>
+                </legend>
+                <div class="radio radio-custom">
+                    <label for="soortRekeningnummer-Nederland">
+                        <input id="soortRekeningnummer-Nederland" name="soortRekeningnummer" formControlName="soortRekeningnummer"
+                               type="radio" value="Nederland">
+                        <span uwvLabel [groupId]="labelGroupId" labelId="vraag-soortRekeningnummer-antwoord-nederland">Nederland</span>
+                    </label>
+                </div>
+                <div class="radio radio-custom">
+                    <label for="soortRekeningnummer-Buitenland">
+                        <input id="soortRekeningnummer-Buitenland" name="soortRekeningnummer" formControlName="soortRekeningnummer"
+                               type="radio" value="Buitenland">
+                        <span uwvLabel [groupId]="labelGroupId" labelId="vraag-soortRekeningnummer-antwoord-buitenland">Buitenland</span>
+                    </label>
+                </div>
+                <div class="radio radio-custom">
+                    <label for="soortRekeningnummer-Uitzendbureau">
+                        <input id="soortRekeningnummer-Uitzendbureau" name="soortRekeningnummer" formControlName="soortRekeningnummer"
+                               type="radio" value="Uitzendbureau">
+                        <span uwvLabel [groupId]="labelGroupId" labelId="vraag-soortRekeningnummer-antwoord-uitzendbureau">Uitzendbureau</span>
+                    </label>
+                </div>
+                <validation-message-for field="soortRekeningnummer">
+                    <validation-message error="required"><span uwvLabel [groupId]="labelGroupId" labelId="error-soortRekeningnummer-required"></span></validation-message>
+                </validation-message-for>
+            </form-control-fieldset>
+        </div>
+    </div>
+
+    <div *ngIf="isNederland()">
+        <div class="row">
+            <div class="col-sm-12">
+                <form-control-group field="IBAN">
+                    <legend class="label legend-label">
+                        <label for="IBAN">
+                            <span uwvLabel [groupId]="labelGroupId" labelId="vraag-iban">IBAN?</span><abbr class="uwv-required_mark" aria-label="verplicht" title="Verplicht">*</abbr>
+                        </label>
+                    </legend>
+                    <input id="IBAN" type="text" name="IBAN" formControlName="IBAN" class="form-control" class="form-control"
+                           uwvLabel [groupId]="labelGroupId" labelId="vraag-iban-placeholder" forAttr="placeholder">
+                    <validation-message-for field="IBAN">
+                        <validation-message error="required"><span uwvLabel [groupId]="labelGroupId" labelId="error-iban-required"></span></validation-message>
+                        <validation-message error="invalidiban"><span uwvLabel [groupId]="labelGroupId" labelId="error-iban-invalid"></span></validation-message>
+                    </validation-message-for>
+                </form-control-group>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="isBuitenland()">
+        <div class="row">
+            <div class="col-sm-12">
+                <form-control-group field="IBAN">
+                    <legend class="label legend-label">
+                        <label for="IBAN">
+                            <span uwvLabel [groupId]="labelGroupId" labelId="vraag-iban">IBAN?</span><abbr class="uwv-required_mark" aria-label="verplicht" title="Verplicht">*</abbr>
+                        </label>
+                    </legend>
+                    <input id="IBAN" type="text" name="IBAN" formControlName="IBAN" class="form-control" class="form-control"
+                           uwvLabel [groupId]="labelGroupId" labelId="vraag-iban-buitenland-placeholder" forAttr="placeholder">
+                    <validation-message-for field="IBAN">
+                        <validation-message error="required"><span uwvLabel [groupId]="labelGroupId" labelId="error-iban-required"></span></validation-message>
+                        <validation-message error="invalidiban"><span uwvLabel [groupId]="labelGroupId" labelId="error-iban-invalid"></span></validation-message>
+                    </validation-message-for>
+                </form-control-group>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <form-control-group field="BIC">
+                    <legend class="label legend-label">
+                        <label for="BIC">
+                            <span uwvLabel [groupId]="labelGroupId" labelId="vraag-bic">BIC?</span>
+                            <abbr class="uwv-required_mark" aria-label="Verplicht" title="Verplicht">*</abbr>
+                        </label>
+                        &nbsp;
+                        <span uwvSnippet snippetId="BM-WAZO-STAP4-INFO-BIC"></span>
+                    </legend>
+                    <input id="BIC" type="text" name="BIC" formControlName="BIC" class="form-control" uwvLabel
+                           [groupId]="labelGroupId" labelId="vraag-bic-placeholder" forAttr="placeholder">
+                    <validation-message-for field="BIC">
+                        <validation-message error="required"><span uwvLabel [groupId]="labelGroupId" labelId="error-bic-required"></span></validation-message>
+                        <validation-message error="invalidbic"><span uwvLabel [groupId]="labelGroupId" labelId="error-bic-invalid"></span></validation-message>
+                    </validation-message-for>
+                </form-control-group>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <form-control-group field="bankNaam">
+                    <legend class="label legend-label">
+                        <label for="bankNaam">
+                            <span uwvLabel [groupId]="labelGroupId" labelId="vraag-bank-naam">bankNaam?</span>
+                            <abbr class="uwv-required_mark" aria-label="Verplicht" title="Verplicht">*</abbr>
+                        </label>
+                    </legend>
+                    <input id="bankNaam" type="text" name="bankNaam" formControlName="bankNaam" class="form-control"
+                           uwvLabel [groupId]="labelGroupId" labelId="vraag-bank-naam-placeholder" forAttr="placeholder">
+                    <validation-message-for field="bankNaam">
+                        <validation-message error="required"><span uwvLabel [groupId]="labelGroupId" labelId="error-bankNaam-required"></span></validation-message>
+                    </validation-message-for>
+                </form-control-group>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <form-control-group field="bankPlaats">
+                    <legend class="label legend-label">
+                        <label for="bankPlaats">
+                            <span uwvLabel [groupId]="labelGroupId" labelId="vraag-bank-plaats">bankPlaats?</span>
+                            <abbr class="uwv-required_mark" aria-label="Verplicht" title="Verplicht">*</abbr>
+                        </label>
+                    </legend>
+                    <input id="bankPlaats" type="text" name="bankPlaats" formControlName="bankPlaats" class="form-control"
+                           uwvLabel [groupId]="labelGroupId" labelId="vraag-bank-plaats-placeholder" forAttr="placeholder">
+                    <validation-message-for field="bankPlaats">
+                        <validation-message error="required"><span uwvLabel [groupId]="labelGroupId" labelId="error-bankPlaats-required"></span></validation-message>
+                    </validation-message-for>
+                </form-control-group>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="isUitzendbureau()">
+        <div class="row">
+            <div class="col-sm-12">
+                <form-control-group field="loonheffingennummer">
+                    <legend class="label legend-label">
+                        <label for="loonheffingennummer">
+                            <span uwvLabel [groupId]="labelGroupId" labelId="vraag-loonheffingennummer">loonheffingennummer?</span>
+                            <abbr class="uwv-required_mark" aria-label="Verplicht" title="Verplicht">*</abbr>
+                        </label>
+                        &nbsp;
+                        <span uwvSnippet snippetId="BM-WAZO-STAP4-INFO-LOONHEFFINGNUMMER"></span>
+                    </legend>
+                    <input id="loonheffingennummer" type="text" name="loonheffingennummer" formControlName="loonheffingennummer" maxlength="12"
+                           class="form-control" uwvLabel [groupId]="labelGroupId" labelId="vraag-loonheffingennummer-placeholder"
+                           forAttr="placeholder">
+                    <validation-message-for field="loonheffingennummer">
+                        <validation-message error="required"><span uwvLabel [groupId]="labelGroupId" labelId="error-loonheffingennummer-required"></span></validation-message>
+                        <validation-message error="invalidlhnummer"><span uwvLabel [groupId]="labelGroupId" labelId="error-loonheffingennummer-invalid"></span></validation-message>
+                    </validation-message-for>
+                </form-control-group>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <form-control-group field="uitzendbureauNaam">
+                    <legend class="label legend-label">
+                        <label for="uitzendbureauNaam">
+                            <span uwvLabel [groupId]="labelGroupId" labelId="vraag-uitzendbureau-naam">uitzendbureauNaam?</span>
+                            <abbr class="uwv-required_mark" aria-label="Verplicht" title="Verplicht">*</abbr>
+                        </label>
+                    </legend>
+                    <input id="uitzendbureauNaam" type="text" name="uitzendbureauNaam" formControlName="uitzendbureauNaam"
+                           class="form-control" uwvLabel [groupId]="labelGroupId" labelId="vraag-uitzendbureau-naam-placeholder"
+                           forAttr="placeholder">
+                    <validation-message-for field="uitzendbureauNaam">
+                        <validation-message error="required"><span uwvLabel [groupId]="labelGroupId" labelId="error-uitzendbureauNaam-required"></span></validation-message>
+                    </validation-message-for>
+                </form-control-group>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <form-control-group field="IBAN">
+                    <legend class="label legend-label">
+                        <label for="IBAN">
+                            <span uwvLabel [groupId]="labelGroupId" labelId="vraag-iban">IBAN?</span>
+                            <abbr class="uwv-required_mark" aria-label="verplicht" title="Verplicht">*</abbr>
+                        </label>
+                    </legend>
+                    <input id="IBAN" type="text" name="IBAN" formControlName="IBAN" class="form-control" class="form-control"
+                           uwvLabel [groupId]="labelGroupId" labelId="vraag-iban-placeholder" forAttr="placeholder">
+                    <validation-message-for field="IBAN">
+                        <validation-message error="required"><span uwvLabel [groupId]="labelGroupId" labelId="error-iban-required"></span></validation-message>
+                        <validation-message error="invalidiban"><span uwvLabel [groupId]="labelGroupId" labelId="error-iban-invalid"></span></validation-message>
+                    </validation-message-for>
+                </form-control-group>
+            </div>
+        </div>
+    </div>
+
+    <legend class="label legend-label">
+        <span uwvLabel [groupId]="labelGroupId" labelId="vraag-intentieverklaring-titel">Intentieverklaring</span>
+        <abbr aria-label="Verplicht" class="uwv-required_mark" title="verplicht">*</abbr>
+    </legend>
+    <form-control-fieldset field="intentieverklaring">
+        <div class="checkbox checkbox-custom">
+            <label for="intentieverklaring">
+                <input id="intentieverklaring" type="checkbox" name="intentieverklaring" formControlName="intentieverklaring">
+                <span uwvLabel [groupId]="labelGroupId" labelId="vraag-intentieverklaring">intentieverklaring</span>
+            </label>
+        </div>
+        <validation-message-for field="intentieverklaring">
+            <validation-message error="checked"><span uwvLabel [groupId]="labelGroupId" labelId="error-intentieverklaring-checked"></span></validation-message>
+        </validation-message-for>
+    </form-control-fieldset>
+</form>

@@ -1,4 +1,4 @@
-import { UwSituatieModel } from '../../../shared/models/uw-situatie';
+import { UwSituatieModel } from '../../../shared/models/uw-situatie-model';
 import * as UwSituatieActions from './uw-situatie.actions';
 
 export function uwsituatieReducer(state: UwSituatieModel, action: UwSituatieActions.Actions) {

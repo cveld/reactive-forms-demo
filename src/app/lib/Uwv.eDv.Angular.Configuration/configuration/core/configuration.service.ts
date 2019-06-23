@@ -39,7 +39,7 @@ export class ConfigurationService {
             );
         }
 
-        if (!this.config[key]) {
+        if (!this.config.hasOwnProperty(key)) {
             throw new Error(
                 `Required property ${key} was not defined within the configuration object. ` +
                 `Please double check the result of your configation url.`

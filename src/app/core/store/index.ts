@@ -1,1 +1,5 @@
-export const effects = [];
+import { FormulierEffects } from './formulier/formulier.effects';
+
+export const effects = [
+    FormulierEffects
+ ];

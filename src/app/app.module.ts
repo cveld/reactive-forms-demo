@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import localenl from '@angular/common/locales/nl';
@@ -12,8 +13,8 @@ import { StoreModule } from '@ngrx/store';
 import { AppStateReducerToken, AppStateReducerProvider } from './core/store/app-state.reducer';
 import { WizardStepHostDirective } from './step-host/step-host';
 import { UwSituatieComponent } from './stappenWazo/uw-situatie/uw-situatie.component';
-// import { FormsModule as UwvFormsModule } from 'uwv-edv-general/src/lib/forms/forms.module';
-// import { FormsModule as UwvFormsModule } from 'uwv-edv-general';
+import { TypedDateInterceptorModule } from 'edv-http';
+import { ContentManagementModule } from 'edv-content-management';
 import { FormsModule2 as UwvFormsModule } from './lib/forms/forms.module';
 import { UwGegevensFormComponent } from './stappenWazo/uw-gegevens/uw-gegevens-form.component';
 import { AdresgegevensComponent } from './stappenWazo/uw-gegevens/adresgegevens/adresgegevens.component';
@@ -21,11 +22,20 @@ import { AdresgegevensFormComponent } from './stappenWazo/uw-gegevens/adresgegev
 import { DatePickerModule } from './lib/date-picker/date-picker.module';
 import { BevestigingComponent } from './bevestiging/bevestiging.component';
 import { registerLocaleData } from '@angular/common';
+import { NgrxEffectsBootstrapModule } from 'edv-ngrx';
+import { AdresgegevensService } from './shared/services/adresgegevens.service';
+import { AdresgegevensReadonlyComponent } from './stappenWazo/uw-gegevens/adresgegevens/adresgegevens-readonly.component';
+import { effects } from './core/store';
+import { BetaalwijzeComponent } from './stappenWazo/betaalwijze/betaalwijze.component';
+import { BetaalwijzeFormComponent } from './stappenWazo/betaalwijze/betaalwijze-form.component';
 import { WerkEnInkomenComponent } from './stappenWazo/werk-en-inkomen/werk-en-inkomen.component';
+import { WerkEnInkomenFormComponent } from './stappenWazo/werk-en-inkomen/werk-en-inkomen-form.component';
+import { InputCurrencyPipe } from './shared/pipes/input-currency.pipe';
 
 @NgModule({
   declarations: [
     AdresgegevensComponent,
+    AdresgegevensReadonlyComponent,
     AdresgegevensFormComponent,
     AppComponent,
     WazoComponent,
@@ -35,25 +45,38 @@ import { WerkEnInkomenComponent } from './stappenWazo/werk-en-inkomen/werk-en-in
     UwGegevensFormComponent,
     WizardStepHostDirective,
     BevestigingComponent,
-    WerkEnInkomenComponent
+    WerkEnInkomenComponent,
+    WerkEnInkomenFormComponent,
+    BetaalwijzeComponent,
+    BetaalwijzeFormComponent,
+    InputCurrencyPipe
   ],
   imports: [
+    HttpClientModule,
     UwvFormsModule,
     FormsModule,
     DatePickerModule,
     ReactiveFormsModule,
+    TypedDateInterceptorModule,
+    ContentManagementModule,
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot(AppStateReducerToken),
     StoreDevtoolsModule.instrument({
       maxAge: 10
-    })
+    }),
+    NgrxEffectsBootstrapModule.forRoot([...effects]),
   ],
-  providers: [AppStateReducerProvider, { provide: LOCALE_ID, useValue: 'nl-NL' }],
+    providers: [
+        AppStateReducerProvider,
+        { provide: LOCALE_ID, useValue: 'nl-NL' },
+        AdresgegevensService
+    ],
   entryComponents: [
     UwSituatieComponent,
     UwGegevensComponent,
-    WerkEnInkomenComponent
+    WerkEnInkomenComponent,
+    BetaalwijzeComponent
   ],
   bootstrap: [AppComponent]
 })

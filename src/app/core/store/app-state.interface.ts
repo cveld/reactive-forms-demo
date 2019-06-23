@@ -1,16 +1,17 @@
-import { UwSituatieModel } from '../../shared/models/uw-situatie';
 import { createSelector } from '@ngrx/store';
-import { WWSituatieEnum, JaNeeEnum, StappenVariantEnum, WWofZelfstandigEnum } from '../../shared/enums';
-import { UwGegevens } from '../../shared/models/uw-gegevens';
-import { UwGegevensComponent } from '../../stappenWazo/uw-gegevens/uw-gegevens.component';
-import { IResourceDictionary } from '../../shared/models/resources-dictionary';
+import { WWSituatieEnum, JaNeeEnum, StappenVariantEnum, WWofZelfstandigEnum } from 'src/app/shared/enums';
+import { IFormulier } from './formulier/formulier.interface';
+import * as domain from 'src/app/shared/helper/domain';
+import { UwSituatieModel, UwGegevensModel, WerkEnInkomenModel, BetaalwijzeModel, VerstuurFormulierModel } from 'src/app/shared/models';
 
 /** Root state shape */
 export interface IAppState {
-    // stappen: Stap[];
+    formulier: IFormulier;
     actieveStap: number;
     uwsituatie: UwSituatieModel;
-    uwgegevens: UwGegevens;
+    uwgegevens: UwGegevensModel;
+    werkEnInkomen: WerkEnInkomenModel;
+    betaalwijze: BetaalwijzeModel;
 }
 
 // export const selectStappen = (state: IAppState) => state.stappen;
@@ -19,6 +20,12 @@ export const selectActieveStapIndex = (state: IAppState) => state.actieveStap;
 export const selectUwSituatie = (state: IAppState) => {
     return state.uwsituatie;
 };
+
+export const selectUwGegevens = (state: IAppState) => {
+    return state.uwgegevens;
+};
+
+export const selectFormulier = (state: IAppState) => state.formulier;
 
 export const selectStappenvariant = createSelector(
     selectUwSituatie, (uwSituatie) => {
@@ -40,9 +47,16 @@ export const selectStappenvariant = createSelector(
     }
 );
 
-
-
-
-
-
+export const selectUitkeringsjaar = createSelector(
+    selectUwSituatie, selectUwGegevens, (uwSituatie, uwGegevens) => {
+        const berekenduitkeringsjaar = domain.uitkeringsjaar(
+            uwSituatie.meerling === JaNeeEnum.ja,
+            uwGegevens.datumVermoedelijkeBevalling,
+            uwGegevens.bevallen === JaNeeEnum.ja,
+            uwGegevens.datumBevalling,
+            uwGegevens.keuzeStartUitkering,
+            uwGegevens.datumUitkering);
+        return berekenduitkeringsjaar;
+    }
+);
 
