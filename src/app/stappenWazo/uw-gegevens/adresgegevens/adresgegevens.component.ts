@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { AdresgegevensFormComponent } from './adresgegevens-form.component';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -8,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 export class AdresgegevensComponent implements OnInit {
   isEditable: boolean;
   isCompleted: boolean;
+  @ViewChild(AdresgegevensFormComponent)
+  AdresgegevensFormComponent: AdresgegevensFormComponent;
+
   complete(): void {
     throw new Error('Method not implemented.');
   }
+
 
   constructor() { }
 

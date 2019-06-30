@@ -1,14 +1,28 @@
+<div *ngIf="!!params['debug']" class="form-state-parent">
+    <div class="form-state">
+        <h2>Adresgegevens</h2>
+        <table>
+            <tr><th>Control</th><th>Status</th></tr>
+            <tr *ngFor="let row of adresgegevensFormState"><td>{{row[0]}}</td><td>{{row[1]}}</td></tr>
+        </table>
+        <h2>UwGegevens</h2>
+        <table>
+            <tr><th>Control</th><th>Status</th></tr>
+            <tr *ngFor="let row of uwGegevensFormState"><td>{{row[0]}}</td><td>{{row[1]}}</td></tr>
+        </table>
+    </div>
+</div>
 <div class="panel">
-    <div class="panel-body">      
+    <div class="panel-body">
         <p>Verplichte velden worden aangegeven met een sterretje</p>
 
         <adresgegevens></adresgegevens>
         <uw-gegevens-form [forceValidation]="submitted" [stappenVariant]="stappenVariant$ | async" [meerling]="(uwSituatie$ | async).meerling == JaNeeEnum.ja"></uw-gegevens-form>
-        
+
         <p class="btn-container-right">
-            <a class="btn btn-link" href="/mijnuwv/aanvragen" data-ta-id="uw-situatie-annuleren">Annuleren</a> 
+            <a class="btn btn-link" href="/mijnuwv/aanvragen" data-ta-id="uw-situatie-annuleren">Annuleren</a>
             <button *ngIf="(stappenVariant$ | async) == StappenVariantEnum.zelfstandige" class="btn btn-primary" (click)="volgendeClicked()" data-ta-id="uw-gegevens-volgende">Volgende</button>
-            <button *ngIf="(stappenVariant$ | async) != StappenVariantEnum.zelfstandige" class="btn btn-primary" (click)="volgendeClicked()" data-ta-id="uw-gegevens-versturen">Versturen</button>            
+            <button *ngIf="(stappenVariant$ | async) != StappenVariantEnum.zelfstandige" class="btn btn-primary" (click)="volgendeClicked()" data-ta-id="uw-gegevens-versturen">Versturen</button>
         </p>
 
     </div>

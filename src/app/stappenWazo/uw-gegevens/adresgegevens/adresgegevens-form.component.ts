@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IWizardStepComponent } from '../../../shared/models';
+import { AdresgegevensForm } from './adresgegevens.form';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -7,6 +8,7 @@ import { IWizardStepComponent } from '../../../shared/models';
   templateUrl: './adresgegevens-form.component.html'
 })
 export class AdresgegevensFormComponent implements OnInit {
+    public form: AdresgegevensForm;
   @Input()
   public forceValidation = false;
   isEditable: boolean;
@@ -18,6 +20,7 @@ export class AdresgegevensFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+        this.form = new AdresgegevensForm();
   }
 
 }
